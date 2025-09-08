@@ -1,0 +1,301 @@
+body {
+        font-family: Arial, sans-serif;
+      }
+
+      #main {
+        background-color: #FFF8F7;
+        padding: 20px 0;
+      }
+
+      .main-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .form-section {
+        background: white;
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .section-title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .form-label {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 8px;
+        font-weight: normal;
+      }
+
+      .form-control,
+      .form-select {
+        border: 2px solid #e0e0e0;
+        border-radius: 6px;
+        padding: 12px;
+        font-size: 14px;
+        background-color: #f8f9fa;
+      }
+
+      .form-control:focus,
+      .form-select:focus {
+        border-color: #ffc107;
+        box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+      }
+
+      .upload-area {
+        border: 2px solid #e0e0e0;
+        border-radius: 6px;
+        background-color: #f8f9fa;
+        padding: 20px;
+        text-align: center;
+        color: #666;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .upload-area:hover {
+        border-color: #ccc;
+        background-color: #f0f0f0;
+      }
+
+      .upload-icon {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #aaa;
+      }
+
+      .btn-save {
+        background-color: #ffc107;
+        border: none;
+        color: #333;
+        font-weight: 600;
+        padding: 12px 30px;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+
+      .btn-save:hover {
+        background-color: #ffca28;
+        color: #333;
+      }
+
+      .btn-clear,
+      .btn-delete {
+        background-color: #f8f9fa;
+        border: 2px solid #e0e0e0;
+        color: #666;
+        font-weight: 500;
+        padding: 12px 30px;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+
+      .btn-clear:hover,
+      .btn-delete:hover {
+        background-color: #e9ecef;
+        border-color: #dee2e6;
+        color: #495057;
+      }
+
+      .btn-update {
+        background-color: #ffc107;
+        border: none;
+        color: #333;
+        font-weight: 600;
+        padding: 12px 30px;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+
+      .btn-update:hover {
+        background-color: #ffca28;
+        color: #333;
+      }
+
+      .user-avatars {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .user-avatar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .avatar-circle {
+        width: 50px;
+        height: 50px;
+        background-color: #6c757d;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+
+      .username {
+        font-size: 12px;
+        color: #666;
+      }
+
+      .news-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .news-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+      }
+
+      .news-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+        color: white;
+        padding: 20px;
+      }
+
+      .news-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .news-meta {
+        font-size: 12px;
+        opacity: 0.8;
+      }
+
+      .news-meta i {
+        margin-right: 5px;
+      }
+
+      textarea.form-control {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+    
+      .all-news-section {
+        background: white;
+        border-radius: 8px;
+        padding: 30px;
+        margin-top: 40px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .all-news-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 30px;
+        color: #333;
+      }
+
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+      }
+
+      .news-item {
+        background: #f8f9fa;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .news-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      .news-item-image {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .news-item-content {
+        padding: 15px;
+      }
+
+      .news-item-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .news-item-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+      }
+
+      .news-item-date {
+        font-size: 12px;
+        color: #666;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .read-more-btn {
+        background-color: #1976d2;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .read-more-btn:hover {
+        background-color: #1565c0;
+      }
+
+      .content-spacing {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+
+      @media (max-width: 768px) {
+        .content-spacing {
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+        
+        .news-grid {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 15px;
+        }
+      }
