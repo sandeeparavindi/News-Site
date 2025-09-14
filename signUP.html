@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Echo.NEWS</title>
+  <style>
+    body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #0c0f14;
+  color: #fff;
+}
+
+      /* Header */
+      .header {
+        background-color: #1a1a1a;
+        padding: 10px 0;
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+      }
+
+      .logo {
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .search-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .search-box {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 3px 0 0 3px;
+        width: 300px;
+      }
+
+      .search-btn {
+        background-color: #ffd700;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 0 3px 3px 0;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .user-icon {
+        width: 30px;
+        height: 30px;
+        background-color: #fff;
+        border-radius: 50%;
+        margin-left: 20px;
+      }
+
+      /* Navigation */
+      .nav {
+        background-color: #333;
+        padding: 0;
+      }
+
+      .nav-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        padding: 0 20px;
+      }
+
+      .nav-item {
+        color: #fff;
+        text-decoration: none;
+        padding: 12px 20px;
+        transition: background-color 0.3s;
+      }
+
+      .nav-item:hover {
+        background-color: #555;
+      }
+
+      .nav-item.active {
+        background-color: #ffd700;
+        color: #000;
+      }
+
+/* Sign Up Section */
+.signup-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 50px;
+}
+.signup-box {
+  background: rgba(255,255,255,0.05);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #000;
+}
+.signup-box input {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+.signup-box button {
+  width: 100%;
+  padding: 12px;
+  background: #2b8be3;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: url('picture 1.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+}
+.hero img {
+  max-width: 400px;
+}
+
+/* Footer */
+      .footer {
+        background-color: #1a1a1a;
+        color: #fff;
+        padding: 40px 0 20px 0;
+        margin-top: 50px;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 30px;
+      }
+
+      .footer-section h4 {
+        margin-bottom: 15px;
+        font-size: 16px;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section li {
+        margin-bottom: 8px;
+      }
+
+      .footer-section a {
+        color: #ccc;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .footer-section a:hover {
+        color: #fff;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid #333;
+        margin-top: 30px;
+        padding-top: 20px;
+        text-align: center;
+        color: #ccc;
+        font-size: 14px;
+      }
+
+  </style>
+</head>
+<body>
+  <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">Echo.NEWS</div>
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="Search here...">
+                <button class="search-btn">Search</button>
+            </div>
+            <div class="user-icon"></div>
+        </div>
+    </header>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="#" class="nav-item">Home</a>
+            <a href="#" class="nav-item">Latest News</a>
+            <a href="#" class="nav-item">WORLD</a>
+            <a href="#" class="nav-item">POLITICS</a>
+            <a href="#" class="nav-item">TECHNOLOGY</a>
+            <a href="#" class="nav-item active">Contact</a>
+            <a href="#" class="nav-item">Login</a>
+        </div>
+    </nav>
+  <!-- Sign Up Section -->
+  <section class="signup-section">
+    <div class="signup-box">
+      <h2>Sign Up</h2>
+      <form action="signup.php" method="POST" enctype="multipart/form-data">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <label for="profile">Profile Picture</label>
+        <input type="file" name="profile" id="profile">
+        <button type="submit">Sign Up</button>
+      </form>
+      <p>Have you an account? <a href="#">Login</a></p>
+    </div>
+    <div class="hero">
+      <img src="picture 2.jpg" alt="Hero Image">
+    </div>
+  </section>
+  <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Echo.NEWS</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>News</h4>
+                <ul>
+                    <li><a href="#">Latest</a></li>
+                    <li><a href="#">Breaking</a></li>
+                    <li><a href="#">Popular</a></li>
+                    <li><a href="#">Trending</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="#">World</a></li>
+                    <li><a href="#">Politics</a></li>
+                    <li><a href="#">Technology</a></li>
+                    <li><a href="#">Sports</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Newsletter</a></li>
+                    <li><a href="#">RSS Feed</a></li>
+                    <li><a href="#">Mobile App</a></li>
+                    <li><a href="#">Archives</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">DMCA</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Echo.NEWS. All rights reserved.</p>
+        </div>
+    </footer>
+  <script src="script.js"></script>
+</body>
+</html>
