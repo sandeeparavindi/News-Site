@@ -4,7 +4,6 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
-// Enable error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -19,12 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 }
 
 try {
-    // Get form data
     $category = $_POST['category'] ?? '';
     $description = $_POST['description'] ?? '';
     $date = $_POST['date'] ?? '';
     
-    // Validate required fields
     if (empty($category) || empty($description) || empty($date)) {
         echo json_encode([
             'status' => 'error',
@@ -33,12 +30,10 @@ try {
         exit;
     }
     
-    // Handle image upload
     $imageName = null;
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         $uploadDir = '../uploads/';
         
-        // Create uploads directory if it doesn't exist
         if (!is_dir($uploadDir)) {
             if (!mkdir($uploadDir, 0777, true)) {
                 echo json_encode([
@@ -49,7 +44,6 @@ try {
             }
         }
         
-        // Validate file type
         $imageExtension = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
         $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
         
@@ -61,7 +55,6 @@ try {
             exit;
         }
         
-        // Validate file size (max 5MB)
         if ($_FILES['image']['size'] > 5 * 1024 * 1024) {
             echo json_encode([
                 'status' => 'error',
@@ -70,11 +63,9 @@ try {
             exit;
         }
         
-        // Generate unique filename
         $imageName = 'news_' . time() . '.' . $imageExtension;
         $imagePath = $uploadDir . $imageName;
         
-        // Move uploaded file
         if (!move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
             echo json_encode([
                 'status' => 'error',
@@ -84,13 +75,10 @@ try {
         }
     }
     
-    // Create title from description (first 50 characters)
     $title = strlen($description) > 50 ? substr($description, 0, 50) . '...' : $description;
     
-    // Connect to database
     $conn = getDatabaseConnection();
     
-    // Prepare SQL statement
     $sql = "INSERT INTO news (category, title, description, image, date_created) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     
@@ -98,10 +86,8 @@ try {
         throw new Exception('Database prepare error: ' . $conn->error);
     }
     
-    // Bind parameters
     $stmt->bind_param("sssss", $category, $title, $description, $imageName, $date);
     
-    // Execute query
     if ($stmt->execute()) {
         $newNewsId = $conn->insert_id;
         
@@ -114,12 +100,10 @@ try {
         throw new Exception('Database execute error: ' . $stmt->error);
     }
     
-    // Close connections
     $stmt->close();
     $conn->close();
     
 } catch (Exception $e) {
-    // Log error for debugging
     error_log("Save news error: " . $e->getMessage());
     
     echo json_encode([
