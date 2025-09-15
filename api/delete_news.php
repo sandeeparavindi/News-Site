@@ -6,16 +6,13 @@ header('Access-Control-Allow-Headers: Content-Type');
 
 include '../config/database.php';
 
-// Check if request method is POST or DELETE
 if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'DELETE') {
     
-    // Get news ID from POST data or URL parameter
     $newsId = '';
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $newsId = $_POST['news_id'] ?? '';
     } else {
-        // For DELETE method, get ID from URL parameter
         $newsId = $_GET['id'] ?? '';
     }
     
@@ -31,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'DELET
     // Connect to database
     $conn = getDatabaseConnection();
     
-    // First, get the image filename to delete the file
     $checkSql = "SELECT image FROM news WHERE id = ?";
     $checkStmt = $conn->prepare($checkSql);
     $checkStmt->bind_param("i", $newsId);
@@ -63,12 +59,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'DELET
         exit;
     }
     
-    // Bind parameters
     $stmt->bind_param("i", $newsId);
     
-    // Execute query
     if ($stmt->execute()) {
-        // Delete associated image file if it exists
         if ($newsData['image'] && file_exists('../uploads/' . $newsData['image'])) {
             unlink('../uploads/' . $newsData['image']);
         }
@@ -84,7 +77,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'DELET
         ]);
     }
     
-    // Close connections
     $stmt->close();
     $conn->close();
     
