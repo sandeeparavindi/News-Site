@@ -6,16 +6,13 @@ header('Access-Control-Allow-Headers: Content-Type');
 
 include '../config/database.php';
 
-// Check if request is POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
-    // Get form data
     $newsId = $_POST['news_id'] ?? '';
     $category = $_POST['category'] ?? '';
     $description = $_POST['description'] ?? '';
     $date = $_POST['date'] ?? '';
     
-    // Basic validation
     if (empty($newsId)) {
         echo json_encode([
             'status' => 'error',
@@ -24,10 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
     
-    // Connect to database
     $conn = getDatabaseConnection();
     
-    // Check if news exists
     $checkSql = "SELECT id, image FROM news WHERE id = ?";
     $checkStmt = $conn->prepare($checkSql);
     $checkStmt->bind_param("i", $newsId);
@@ -47,13 +42,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $existingNews = $result->fetch_assoc();
     $checkStmt->close();
     
-    // Handle image upload
-    $imageName = $existingNews['image']; // Keep existing image by default
+    $imageName = $existingNews['image']; 
     
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         $uploadDir = '../uploads/';
         
-        // Create uploads directory if it doesn't exist
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
@@ -62,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $imageName = 'news_' . time() . '.' . $imageExtension;
         $imagePath = $uploadDir . $imageName;
         
-        // Check if image file is valid
         $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
         if (!in_array(strtolower($imageExtension), $allowedTypes)) {
             echo json_encode([
@@ -72,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit;
         }
         
-        // Move uploaded file
         if (!move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
             echo json_encode([
                 'status' => 'error',
@@ -81,13 +72,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit;
         }
         
-        // Delete old image if it exists
         if ($existingNews['image'] && file_exists($uploadDir . $existingNews['image'])) {
             unlink($uploadDir . $existingNews['image']);
         }
     }
     
-    // Build SQL update query dynamically
     $updateFields = [];
     $params = [];
     $types = "";
@@ -103,7 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $params[] = $description;
         $types .= "s";
         
-        // Also update title with first 50 characters of description
         $title = strlen($description) > 50 ? substr($description, 0, 50) . '...' : $description;
         $updateFields[] = "title = ?";
         $params[] = $title;
@@ -131,11 +119,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
     
-    // Add news ID to parameters
     $params[] = $newsId;
     $types .= "i";
     
-    // Prepare SQL statement
     $sql = "UPDATE news SET " . implode(", ", $updateFields) . " WHERE id = ?";
     $stmt = $conn->prepare($sql);
     
@@ -147,10 +133,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
     
-    // Bind parameters
     $stmt->bind_param($types, ...$params);
     
-    // Execute query
     if ($stmt->execute()) {
         echo json_encode([
             'status' => 'success',
@@ -163,7 +147,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ]);
     }
     
-    // Close connections
     $stmt->close();
     $conn->close();
     
