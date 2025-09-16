@@ -1,207 +1,485 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Echo.NEWS — Stay In The Know</title>
-  <link rel="stylesheet" href="css/styles.css"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-</head>
-<body>
-  <!-- Header -->
-  <header class="header">
-    <div class="header-content">
-      <div class="logo">Echo.NEWS</div>
-      <div class="search-container">
-        <input type="text" class="search-box" placeholder="Search anything…" aria-label="Search"/>
-        <button class="search-btn" type="submit">Search</button>
-      </div>
-      <div>
-          <a href="pages/adminAirticle.html">ADD</a>
-        </div>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Echo.NEWS — Stay In The Know</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .news-cards-section {
+        margin: 40px 0;
+        padding: 20px 0;
+      }
 
-    <nav class="navbar container" id="navbar">
-      <a href="index.html" class="active">Home</a>
-      <a href="pages/latestNews.html">Latest News</a>
-      <a href="pages/newsWorld.html" class="nav-item">WORLD</a>
+      .news-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-top: 20px;
+        max-width: 1300px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 20px;
+      }
+
+      .news-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+
+      .news-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .news-card-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .news-card:hover .news-card-image {
+        transform: scale(1.05);
+      }
+
+      .news-card-content {
+        padding: 20px;
+      }
+
+      .news-card-category {
+        display: inline-block;
+        background: #007bff;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      .news-card-category.politics {
+        background: #dc3545;
+      }
+      .news-card-category.sports {
+        background: #28a745;
+      }
+      .news-card-category.technology {
+        background: #6f42c1;
+      }
+      .news-card-category.entertainment {
+        background: #fd7e14;
+      }
+      .news-card-category.world {
+        background: #20c997;
+      }
+
+      .news-card-title {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.4;
+        margin-bottom: 12px;
+        color: #333;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .news-card-description {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.5;
+        margin-bottom: 16px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .news-card-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        color: #999;
+        border-top: 1px solid #eee;
+        padding-top: 12px;
+      }
+
+      .news-cards-loading {
+        text-align: center;
+        padding: 40px;
+        color: #666;
+      }
+
+      .news-cards-error {
+        text-align: center;
+        padding: 40px;
+        color: #dc3545;
+        background: #f8f9fa;
+        border-radius: 8px;
+      }
+
+      .section__title {
+        font-size: 28px;
+        font-weight: 800;
+        color: #333;
+        margin-bottom: 8px;
+        text-align: center;
+        margin-left: 340px;
+      }
+
+      .section__subtitle {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 20px;
+        text-align: center;
+        margin-right: 340px;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 1200px) {
+        .news-cards-grid {
+          grid-template-columns: repeat(
+            2,
+            1fr
+          ); /* 2 columns on medium screens */
+        }
+      }
+
+      @media (max-width: 768px) {
+        .news-cards-grid {
+          grid-template-columns: 1fr; /* 1 column on small screens */
+        }
+      }
+
+      /* Header */
+      .header {
+        background-color: #1a1a1a;
+        padding: 10px 0;
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+      }
+
+      .logo {
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .search-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .search-box {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 3px 0 0 3px;
+        width: 300px;
+      }
+
+      .search-btn {
+        background-color: #ffd700;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 0 3px 3px 0;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .user-icon {
+        width: 30px;
+        height: 30px;
+        background-color: #fff;
+        border-radius: 50%;
+        margin-left: 20px;
+      }
+
+      /* Navigation */
+      .nav {
+        background-color: #333;
+        padding: 0;
+      }
+
+      .nav-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        padding: 0 20px;
+      }
+
+      .nav-item {
+        color: #fff;
+        text-decoration: none;
+        padding: 12px 20px;
+        transition: background-color 0.3s;
+      }
+
+      .nav-item:hover {
+        background-color: #555;
+      }
+
+      .nav-item.active {
+        background-color: #ffd700;
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">Echo.NEWS</div>
+        <div class="search-container">
+          <input type="text" class="search-box" placeholder="Search here..." />
+          <button class="search-btn">Search</button>
+        </div>
+        <div>
+          <a href="pages/adminAirticle.html" class="nav-item">ADD</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="nav-content">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="pages/latestNews.html" class="nav-item">Latest News</a>
+        <a href="pages/newsWorld.html" class="nav-item">WORLD</a>
         <a href="pages/Article new.html" class="nav-item">ARTICLE</a>
         <a href="" class="nav-item">DASHBOARD</a>
         <a href="pages/contactUs.html" class="nav-item active">CONTACT US</a>
         <a href="login.html" class="nav-item">LOGIN</a>
+      </div>
     </nav>
-  </header>
 
-  <!-- Hero / Highlights -->
-  <section class="hero container">
-    <div class="carousel" id="heroCarousel" aria-roledescription="carousel">
-      <div class="carousel__track">
-        <article class="slide is-active">
-          <video controls autoplay muted loop class="slide__video">
-            <source src="assets/videos/top1.mp4" type="video/mp4">
-          </video>
-          <div class="slide__content">
-            <span class="badge badge--primary">Politics</span>
-            <h2>French government collapses as MPs vote to oust prime minister</h2>
-            <p>Legislators toppled France's government in a confidence vote on Monday, 
-              a new crisis for Europe's second-largest economy that obliges President Emmanuel Macron to search for a fourth prime minister in 12 months.</p>
-          </div>
-        </article>
-        <article class="slide">
-          <img src="assets/images/top2.jpg" alt="Top Story 2"/>
-          <div class="slide__content">
-            <span class="badge badge--accent">Technology</span>
-            <h2>Breakthrough in AI safety brings new guardrails</h2>
-            <p>Researchers launch a community framework to test, measure, and report model behavior.</p>
-          </div>
-        </article>
-        <article class="slide is-active">
-          <video controls autoplay muted loop class="slide__video">
-            <source src="assets/videos/top3.mp4" type="video/mp4">
-          </video>
-          <div class="slide__content">
-            <span class="badge badge--success">Sports</span>
-            <h2>HIGHLIGHTS! Wolves 0-4 Man City | Haaland (2), Reijnders & Cherki goals!</h2>
-            <p>Opening day specialist Erling Haaland bagged a brace while summer signings Tijjani Reijnders and 
-              Rayan Cherki scored on their Premier League debuts as City got off to the perfect start courtesy of a 4-0 opening day victory at Wolves.</p>
-          </div>
-        </article>
-      </div>
-      <div class="carousel__controls">
-        <button class="icon-btn" data-carousel="prev" aria-label="Previous">‹</button>
-        <div class="dots" id="heroDots"></div>
-        <button class="icon-btn" data-carousel="next" aria-label="Next">›</button>
-      </div>
-    </div>
-    <aside class="stats">
-      <div class="stat">
-        <div class="stat__value" id="statStories">1831</div>
-        <div class="stat__label">Stories</div>
-      </div>
-      <div class="stat">
-        <div class="stat__value" id="statWriters">76</div>
-        <div class="stat__label">Writers</div>
-      </div>
-      <div class="mini-cards">
-        <a class="mini-card" href="#">
-          <img src="assets/images/minicard1.jpg" alt="World"/>
-          <div>
-            <span class="mini-card__title">Global Bulletin</span>
-            <span class="mini-card__meta">24 updates</span>
-          </div>
-        </a>
-        <a class="mini-card" href="#">
-          <img src="assets/images/minicard2.jpg" alt="Tech"/>
-          <div>
-            <span class="mini-card__title">Gadgets</span>
-            <span class="mini-card__meta">12 reviews</span>
-          </div>
-        </a>
-        <a class="mini-card" href="#">
-          <img src="assets/images/minicard3.jpeg" alt="Sports"/>
-          <div>
-            <span class="mini-card__title">Match Center</span>
-            <span class="mini-card__meta">Live</span>
-          </div>
-        </a>
-      </div>
-    </aside>
-  </section>
-
-  <!-- Popular Topics -->
-  <section class="container section">
-    <div class="section__head">
-      <h3>Popular Topics</h3>
-      <div class="tabs" role="tablist">
-        <button class="tab is-active" data-tab="today">Today</button>
-        <button class="tab" data-tab="week">This Week</button>
-        <button class="tab" data-tab="month">This Month</button>
-      </div>
-    </div>
-    <div class="cards-grid" id="popularGrid">
-      <!-- populated by JS -->
-    </div>
-  </section>
-
-  <!-- Fixtures / Scoreboard -->
-  <section class="container section scoreboard">
-    <div class="score-card">
-      <img src="assets/images/score-card.jpg" alt="Fixture"/>
-      <div class="score-card__overlay">
-        <div class="teams">
-          <span>Leicester City</span>
-          <span class="vs">VS</span>
-          <span>Liverpool</span>
+    <!-- Hero / Highlights -->
+    <section class="hero container">
+      <div class="carousel" id="heroCarousel" aria-roledescription="carousel">
+        <div class="carousel__track">
+          <article class="slide is-active">
+            <video controls autoplay muted loop class="slide__video">
+              <source src="assets/videos/top1.mp4" type="video/mp4" />
+            </video>
+            <div class="slide__content">
+              <span class="badge badge--primary">Politics</span>
+              <h2>
+                French government collapses as MPs vote to oust prime minister
+              </h2>
+              <p>
+                Legislators toppled France's government in a confidence vote on
+                Monday, a new crisis for Europe's second-largest economy that
+                obliges President Emmanuel Macron to search for a fourth prime
+                minister in 12 months.
+              </p>
+            </div>
+          </article>
+          <article class="slide">
+            <img src="assets/images/top2.jpg" alt="Top Story 2" />
+            <div class="slide__content">
+              <span class="badge badge--accent">Technology</span>
+              <h2>Breakthrough in AI safety brings new guardrails</h2>
+              <p>
+                Researchers launch a community framework to test, measure, and
+                report model behavior.
+              </p>
+            </div>
+          </article>
+          <article class="slide is-active">
+            <video controls autoplay muted loop class="slide__video">
+              <source src="assets/videos/top3.mp4" type="video/mp4" />
+            </video>
+            <div class="slide__content">
+              <span class="badge badge--success">Sports</span>
+              <h2>
+                HIGHLIGHTS! Wolves 0-4 Man City | Haaland (2), Reijnders &
+                Cherki goals!
+              </h2>
+              <p>
+                Opening day specialist Erling Haaland bagged a brace while
+                summer signings Tijjani Reijnders and Rayan Cherki scored on
+                their Premier League debuts as City got off to the perfect start
+                courtesy of a 4-0 opening day victory at Wolves.
+              </p>
+            </div>
+          </article>
         </div>
-        <div class="score">
-          <span id="scoreHome">00</span> : <span id="scoreAway">00</span>
+        <div class="carousel__controls">
+          <button class="icon-btn" data-carousel="prev" aria-label="Previous">
+            ‹
+          </button>
+          <div class="dots" id="heroDots"></div>
+          <button class="icon-btn" data-carousel="next" aria-label="Next">
+            ›
+          </button>
         </div>
       </div>
-    </div>
-    <div class="calendar">
-      <h4>League Calendar</h4>
-      <ul id="calendarList"></ul>
-    </div>
+      <aside class="stats">
+        <div class="stat">
+          <div class="stat__value" id="statStories">1831</div>
+          <div class="stat__label">Stories</div>
+        </div>
+        <div class="stat">
+          <div class="stat__value" id="statWriters">76</div>
+          <div class="stat__label">Writers</div>
+        </div>
+        <div class="mini-cards">
+          <a class="mini-card" href="#">
+            <img src="assets/images/minicard1.jpg" alt="World" />
+            <div>
+              <span class="mini-card__title">Global Bulletin</span>
+              <span class="mini-card__meta">24 updates</span>
+            </div>
+          </a>
+          <a class="mini-card" href="#">
+            <img src="assets/images/minicard2.jpg" alt="Tech" />
+            <div>
+              <span class="mini-card__title">Gadgets</span>
+              <span class="mini-card__meta">12 reviews</span>
+            </div>
+          </a>
+          <a class="mini-card" href="#">
+            <img src="assets/images/minicard3.jpeg" alt="Sports" />
+            <div>
+              <span class="mini-card__title">Match Center</span>
+              <span class="mini-card__meta">Live</span>
+            </div>
+          </a>
+        </div>
+      </aside>
+    </section>
 
-    <script>
-    // Data source for fixtures
-    const fixtures = {
-      Mon: 2,
-      Tue: 5,
-      Wed: 1,
-      Thu: 3,
-      Fri: 4
-    };
-
-    // Target container
-    const fixturesDiv = document.getElementById("fixtures");
-
-    // Loop through data and render
-    for (const [day, count] of Object.entries(fixtures)) {
-      const p = document.createElement("p");
-      p.textContent = `${day} – ${count} fixture${count > 1 ? "s" : ""}`;
-      fixturesDiv.appendChild(p);
-    }
-  </script>
-
-    <div class="ad">
-      <img src="assets/images/ad.jpeg" alt="Advertisement placeholder" />
-      <div class="ad__content">
-        <h4>Advertise Here</h4>
-        <p>Reach thousands of readers daily. Promote your brand with us!</p>
-        <button class="btn btn--primary">Contact Us</button>
+    <!-- Database News Cards Section -->
+    <section class="news-cards-section">
+      <div class="section__head">
+        <h3 class="section__title">Latest from our Newsroom</h3>
+        <p class="section__subtitle">
+          Stay updated with the most recent stories from our editorial team
+        </p>
       </div>
-    </div>
-  </section>
+      <div id="newsCardsContainer">
+        <div class="news-cards-loading">
+          <div
+            style="
+              display: inline-block;
+              width: 20px;
+              height: 20px;
+              border: 2px solid #f3f3f3;
+              border-top: 2px solid #007bff;
+              border-radius: 50%;
+              animation: spin 1s linear infinite;
+            "
+          ></div>
+          <p style="margin-top: 10px">Loading latest news...</p>
+        </div>
+      </div>
+    </section>
 
-  <!-- Latest News + Trending -->
-  <section class="container section grid-3-1">
-    <div>
-      <h3 class="section__title">Latest News</h3>
-      <div id="latestList" class="latest-list"></div>
+    <!-- Popular Topics -->
+    <section class="container section">
+      <div class="section__head">
+        <h3>Popular Topics</h3>
+        <div class="tabs" role="tablist">
+          <button class="tab is-active" data-tab="today">Today</button>
+          <button class="tab" data-tab="week">This Week</button>
+          <button class="tab" data-tab="month">This Month</button>
+        </div>
+      </div>
+      <div class="cards-grid" id="popularGrid">
+        <!-- populated by JS -->
+      </div>
+    </section>
 
-    </div>
-    <aside>
-      <h3 class="section__title">Trending Bulletin</h3>
-      <div id="trendingList" class="trending-list"></div>
-    </aside>
-  </section>
+    <!-- Fixtures / Scoreboard -->
+    <section class="container section scoreboard">
+      <div class="score-card">
+        <img src="assets/images/score-card.jpg" alt="Fixture" />
+        <div class="score-card__overlay">
+          <div class="teams">
+            <span>Leicester City</span>
+            <span class="vs">VS</span>
+            <span>Liverpool</span>
+          </div>
+          <div class="score">
+            <span id="scoreHome">00</span> : <span id="scoreAway">00</span>
+          </div>
+        </div>
+      </div>
+      <div class="calendar">
+        <h4>League Calendar</h4>
+        <ul id="calendarList"></ul>
+      </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-       <div class="footer-section">
-        <h4>Echo.NEWS</h4>
+      <script>
+        const fixtures = {
+          Mon: 2,
+          Tue: 5,
+          Wed: 1,
+          Thu: 3,
+          Fri: 4,
+        };
+
+        const fixturesDiv = document.getElementById("fixtures");
+
+        for (const [day, count] of Object.entries(fixtures)) {
+          const p = document.createElement("p");
+          p.textContent = `${day} – ${count} fixture${count > 1 ? "s" : ""}`;
+          fixturesDiv.appendChild(p);
+        }
+      </script>
+
+      <div class="ad">
+        <img src="assets/images/ad.jpeg" alt="Advertisement placeholder" />
+        <div class="ad__content">
+          <h4>Advertise Here</h4>
+          <p>Reach thousands of readers daily. Promote your brand with us!</p>
+          <button class="btn btn--primary">Contact Us</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest News + Trending -->
+    <section class="container section grid-3-1">
+      <div>
+        <h3 class="section__title">Latest News</h3>
+        <div id="latestList" class="latest-list"></div>
+      </div>
+      <aside>
+        <h3 class="section__title">Trending Bulletin</h3>
+        <div id="trendingList" class="trending-list"></div>
+      </aside>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Echo.NEWS</h4>
           <ul>
             <li><a href="#">About US</a></li>
             <li><a href="#">Our Team</a></li>
             <li><a href="#">Careers</a></li>
             <li><a href="#">Contact</a></li>
           </ul>
-       </div>
-       <div class="footer-section">
+        </div>
+        <div class="footer-section">
           <h5>News</h5>
           <ul>
             <li><a href="#">Latest</a></li>
@@ -209,8 +487,8 @@
             <li><a href="#">Popular</a></li>
             <li><a href="#">Trending</a></li>
           </ul>
-       </div>
-       <div class="footer-section">
+        </div>
+        <div class="footer-section">
           <h5>Categories</h5>
           <ul>
             <li><a href="#">World</a></li>
@@ -218,8 +496,8 @@
             <li><a href="#">Technology</a></li>
             <li><a href="#">Sports</a></li>
           </ul>
-       </div>
-       <div class="footer-section">
+        </div>
+        <div class="footer-section">
           <h5>services</h5>
           <ul>
             <li><a href="#">Newsletter</a></li>
@@ -227,8 +505,8 @@
             <li><a href="#">Mobile App</a></li>
             <li><a href="#">Achives</a></li>
           </ul>
-       </div>
-       <div class="footer-section">
+        </div>
+        <div class="footer-section">
           <h5>Legal</h5>
           <ul>
             <li><a href="#">Privacy Policy</a></li>
@@ -236,15 +514,124 @@
             <li><a href="#">Cookie Policy</a></li>
             <li><a href="#">DMCA</a></li>
           </ul>
-       </div>
-    </div><!-- close footer content-->
-    
-    <!-- Seperated Footer Bottom Outside the grid-->
-    <div class="footer-bottom">
-        <p>&copy; 2024 Echo.NEWS. All rights reserved.</p>
-    </div>
-  </footer>
+        </div>
+      </div>
 
-  <script src="JS/script.js"></script>
-</body>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Echo.NEWS. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="JS/script.js"></script>
+
+    <script>
+      const API_BASE_URL = "http://localhost/News/News-Site/api";
+      const UPLOADS_BASE_URL = "http://localhost/News/News-Site/uploads";
+
+      const style = document.createElement("style");
+      style.textContent = `
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    `;
+      document.head.appendChild(style);
+
+      async function loadNewsCards() {
+        const container = document.getElementById("newsCardsContainer");
+
+        try {
+          const response = await fetch(`${API_BASE_URL}/get_news.php`);
+          const result = await response.json();
+
+          if (result.status === "success") {
+            const newsData = result.data;
+
+            if (newsData.length === 0) {
+              container.innerHTML = `
+              <div class="news-cards-error">
+                <h3>No News Available</h3>
+                <p>No news articles have been published yet. Check back later for updates!</p>
+              </div>
+            `;
+              return;
+            }
+
+            const displayNews = newsData.slice(0, 4);
+
+            const gridHTML = `
+            <div class="news-cards-grid">
+              ${displayNews.map((news) => createNewsCard(news)).join("")}
+            </div>
+          `;
+
+            container.innerHTML = gridHTML;
+
+            updateStats(newsData.length);
+          } else {
+            throw new Error(result.message || "Failed to load news");
+          }
+        } catch (error) {
+          console.error("Error loading news cards:", error);
+          container.innerHTML = `
+          <div class="news-cards-error">
+            <h3>Error Loading News</h3>
+            <p>Unable to load news articles. Please check your connection and try again.</p>
+            <button onclick="loadNewsCards()" style="margin-top: 10px; padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Retry</button>
+          </div>
+        `;
+        }
+      }
+
+      function createNewsCard(news) {
+        const defaultImage =
+          "https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+        const imageUrl = news.image_url
+          ? `${UPLOADS_BASE_URL}/${news.image_url}`
+          : defaultImage;
+
+        const truncatedTitle =
+          news.title.length > 60
+            ? news.title.substring(0, 60) + "..."
+            : news.title;
+        const truncatedDesc =
+          news.description.length > 100
+            ? news.description.substring(0, 100) + "..."
+            : news.description;
+
+        return `
+        <div class="news-card" onclick="openNewsDetail(${news.id})">
+          <img src="${imageUrl}" alt="${news.title}" class="news-card-image" 
+               onerror="this.src='${defaultImage}'">
+          <div class="news-card-content">
+            <span class="news-card-category ${news.category.toLowerCase()}">${
+          news.category
+        }</span>
+            <h3 class="news-card-title">${truncatedTitle}</h3>
+            <p class="news-card-description">${truncatedDesc}</p>
+            <div class="news-card-meta">
+              <span>📅 ${news.formatted_date}</span>
+              <span>👁️ Read more</span>
+            </div>
+          </div>
+        </div>
+      `;
+      }
+
+      function openNewsDetail(newsId) {
+        window.location.href = `pages/news-detail.html?id=${newsId}`;
+      }
+
+      function updateStats(totalNews) {
+        const statStories = document.getElementById("statStories");
+        if (statStories) {
+          statStories.textContent = totalNews;
+        }
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        loadNewsCards();
+      });
+      setInterval(loadNewsCards, 120000);
+    </script>
+  </body>
 </html>
