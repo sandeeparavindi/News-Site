@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<title>Document</title>
+</head>
+<style>
+  .card-title {
+  color: #fff !important;
+  font-weight: 800;
+  font-size: 2.2rem;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.7), 0 1px 0 #333;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.carousel-item {
+  color: #fff !important;
+}
+
+.carousel-item .card-text {
+  color: #0b0b0b !important;
+  font-size: 1rem;
+  font-weight: 400;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+  margin-bottom: 0.2rem;
+}
+
+.carousel-img {
+  display: block;
+  margin: 40px auto; /* centers image and adds space above/below */
+  max-width: 80%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 16px; /* optional: rounded corners */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15); /* optional: subtle shadow */
+}
+
+/* Header */
+        .header {
+            background-color: #1a1a1a;
+            padding: 10px 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 3px 0 0 3px;
+            width: 300px;
+        }
+
+        .search-btn {
+            background-color: #ffd700;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 0 3px 3px 0;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .user-icon {
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin-left: 20px;
+        }
+
+        /* Navigation */
+        .nav {
+            background-color: #333;
+            padding: 0;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            padding: 0 20px;
+        }
+
+        .nav-item {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 20px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-item:hover {
+            background-color: #555;
+        }
+
+        .nav-item.active {
+            background-color: #ffd700;
+            color: #000;
+        }
+/* Footer */
+        .footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 40px 0 20px 0;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-section a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            color: #ccc;
+            font-size: 14px;
+        }
+
+</style>
+<body>
+
+<!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">Echo.NEWS</div>
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="Search here...">
+                <button class="search-btn">Search</button>
+            </div>
+            <div class="user-icon"></div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="#" class="nav-item">HOME</a>
+            <a href="#" class="nav-item">LATEST NEWS</a>
+            <a href="#" class="nav-item">WORLD</a>
+            <a href="#" class="nav-item"><ARTICLE></ARTICLE></a>
+            <a href="#" class="nav-item active">DASHBOARD</a>
+            <a href="#" class="nav-item">CONTACT US</a>
+            <a href="#" class="nav-item">LOG IN</a>
+        </div>
+    </nav>
+
+
+<!-- Hero Section with Carousel -->
+<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner bg-light">
+
+    <!-- Slide 1 -->
+    <div class="carousel-item active">
+      <div class="card text-white">
+        <img src="/assets/news1.jpeg" class="card-img carousel-img" alt="News 1">
+        <div class="card-img-overlay d-flex flex-column justify-content-end ">
+          <h1 class="card-title">Breaking News: Donald Trump Faces New Legal Battle</h1>
+          <p class="card-text">Updated 5 mins ago | By Reporter</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-item">
+      <div class="card text-white">
+        <img src="/assets/news2.jpeg" class="card-img carousel-img" alt="News 2">
+        <div class="card-img-overlay d-flex flex-column justify-content-end ">
+          <h1 class="card-title">Breaking News: Elon Musk Announces Bold SpaceX Plan</h1>
+          <p class="card-text">Updated 10 mins ago | By Sports Desk</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="carousel-item">
+      <div class="card text-white">
+        <img src="/assets/news3.jpeg" class="card-img carousel-img" alt="News 3">
+        <div class="card-img-overlay d-flex flex-column justify-content-end ">
+          <h1 class="card-title">Breaking News: Football Final Ends in Shocking Upset</h1>
+          <p class="card-text">Updated 20 mins ago | By Tech Writer</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+
+    <!--small headlines Row-->
+    <div class="contaner my-4">
+        <div class="row g-3">
+      <div class="col-md-3">
+        <div class="card">
+          <img src="/assets/news4.jpeg" class="card-img-top" alt="...">
+          <div class="card-body bg-light text-dark">
+            <h6 class="card-ttl">Headline 1: Short News</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <img src="/assets/news5.jpeg" class="card-img-top" alt="...">
+          <div class="card-body bg-light text-dark">
+            <h6 class="card-ttl">Headline 3: Big <br>Story</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <img src="/assets/news6.jpeg" class="card-img-top" alt="...">
+          <div class="card-body bg-light text-dark">
+            <h6 class="card-ttl">Headline 4: Latest Buzz</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <img src="/assets/news7.jpeg" class="card-img-top" alt="...">
+          <div class="card-body bg-light text-dark">
+            <h6 class="card-ttl">Headline 2: Another Update</h6>
+          </div>
+        </div>
+      </div>
+        </div>
+    </div>
+
+<!-- Featured News Section -->
+<div class="container my-5">
+  <div class="row align-items-center">
+    
+    <!-- Image -->
+    <div class="col-md-6">
+      <img src="/assets/news8.jpeg" class="img-fluid rounded" alt="Featured News">
+    </div>
+    
+    <!-- Text -->
+    <div class="col-md-6">
+      <h2 class="mb-3">Exclusive Coverage: MTV Music Awards Highlights</h2>
+      <p>
+        The star-studded night featured unforgettable performances, 
+        surprise wins, and emotional speeches as music’s biggest names 
+        gathered to celebrate the year’s best.
+      </p>
+      <button class="btn btn-warning">Read More</button>
+    </div>
+    
+  </div>
+</div>
+
+<!-- Latest News Section -->
+<div class="container my-5">
+  <h2 class="mb-4">Latest News</h2>
+  <div class="row g-4" id="categoryNews">
+
+    <!-- News Card 1 -->
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img src="/assets/news9.jpeg" class="card-img-top" alt="News 1">
+        <div class="card-body">
+          <h5 class="card-ttl">Entertainment: Justin Bieber Update</h5>
+          <p class="card-text">Justin Bieber made headlines today with exciting news for fans as he teased 
+            upcoming music and shared personal milestones.</p>
+          <a href="#" class="btn btn-sm btn-warning">Read More</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- News Card 2 -->
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img src="/assets/news10.jpeg" class="card-img-top" alt="News 2">
+        <div class="card-body">
+          <h5 class="card-ttl">Business: Fishing Industry Insights</h5>
+          <p class="card-text">The local fishing industry reported major developments as boats 
+            returned with record catches, boosting market activity.</p>
+          <a href="#" class="btn btn-sm btn-warning">Read More</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- News Card 3 -->
+    <div class="col-md-4">
+      <div class="card h-100">
+        <img src="/assets/news11.jpeg" class="card-img-top" alt="News 3">
+        <div class="card-body">
+          <h5 class="card-ttl">Celebrity: Aishwarya Rai Bachchan News</h5>
+          <p class="card-text">Aishwarya Rai Bachchan captured attention at a recent event, earning praise for her presence and upcoming projects.</p>
+          <a href="#" class="btn btn-sm btn-warning">Read More</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Top Stories - Alternate Format -->
+<div class="col-md-8 mx-auto">
+  <h2 class="mb-4">Top Stories</h2>
+
+  <!-- News Item -->
+  <div class="d-flex mb-4 border-bottom pb-3">
+    <img src="/assets/news12.avif" alt="Story 1" class="me-3 rounded" style="width:150px; height:100px; object-fit:cover;">
+    <div>
+      <h5 class="mb-1"> Science: Space Exploration</h5>
+      <p class="mb-2">NASA has confirmed a new mission that aims to explore the farthest corners of our solar system.</p>
+      <a href="#" class="btn btn-sm btn-outline-warning">Read More</a>
+    </div>
+  </div>
+
+  <!-- News Item -->
+  <div class="d-flex mb-4 border-bottom pb-3">
+    <img src="/assets/news13.avif" alt="Story 2" class="me-3 rounded" style="width:150px; height:100px; object-fit:cover;">
+    <div>
+      <h5 class="mb-1"> Entertainment: Wednesday Season 2</h5>
+      <p class="mb-2">Fans of the hit Netflix series Wednesday are buzzing with excitement as Season 2 
+        promises to deliver even more mystery, dark humor, 
+        and supernatural thrills. With fresh storylines, new characters, 
+        and a deeper dive into Wednesday Addams’ world, the upcoming season is set to surpass expectations.</p>
+      <a href="#" class="btn btn-sm btn-outline-warning">Read More</a>
+    </div>
+  </div>
+
+  <!-- News Item -->
+    <div class="d-flex mb-4 border-bottom pb-3">
+      <img src="/assets/news1.jpeg" alt="Story 2" class="me-3 rounded" style="width:150px; height:100px; object-fit:cover;">
+      <div>
+        <h5 class="mb-1"> Technology: AI Breakthrough</h5>
+        <p class="mb-2">A leading research team has developed an AI system that mimics human creativity like never before.</p>
+        <a href="#" class="btn btn-sm btn-outline-warning">Read More</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Echo.NEWS</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Team</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>News</h4>
+          <ul>
+            <li><a href="#">Latest</a></li>
+            <li><a href="#">Breaking</a></li>
+            <li><a href="#">Popular</a></li>
+            <li><a href="#">Trending</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Categories</h4>
+          <ul>
+            <li><a href="#">World</a></li>
+            <li><a href="#">Politics</a></li>
+            <li><a href="#">Technology</a></li>
+            <li><a href="#">Sports</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Newsletter</a></li>
+            <li><a href="#">RSS Feed</a></li>
+            <li><a href="#">Mobile App</a></li>
+            <li><a href="#">Archives</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">DMCA</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Echo.NEWS. All rights reserved.</p>
+      </div>
+    </footer>
+
+<script>
+    function loadCategoryNews(category) {
+        fetch(`get_news_by_category.php?category=${category}`)
+            .then(res => res.json())
+            .then(response => {
+                 const container = document.getElementById('categoryNews');
+                container.innerHTML = '';
+
+                if (response.status === 'success') {
+                    response.data.forEach(item => {
+                        const card = document.createElement('div');
+                        card.classList.add('col-md-4');
+                        card.innerHTML = `
+                            <div class="card h-100">
+                                <img src="${item.image}" class="card-img-top" alt="${item.title}">
+                                <div class="card-body">
+                                    <h5 class="card-ttl">${item.title}</h5>
+                                    <p class="card-text">${item.description}</p>
+                                    <a href="#" class="btn btn-sm btn-warning">Read More</a>
+                                </div>
+                            </div>
+                            `;
+                            container.appendChild(card);
+                        });
+                    } else {
+                        container.innerHTML = `<p>No news found for category "${category}"</p>`;
+                    }
+                })
+                .catch(err => console.error(err));
+        }
+
+        // Example: load 'Technology' category by default
+        loadCategoryNews('Technology');
+    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
