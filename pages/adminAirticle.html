@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News Admin</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("../assets/tank.jpg") center/cover no-repeat;
+        opacity: 0.4;
+        z-index: -1;
+      }
+
+      .header {
+        background-color: #1a1a1a;
+        padding: 10px 0;
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+      }
+
+      .logo {
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .search-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .search-box {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 3px 0 0 3px;
+        width: 300px;
+      }
+
+      .search-btn {
+        background-color: #ffd700;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 0 3px 3px 0;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .user-icon {
+        width: 30px;
+        height: 30px;
+        background-color: #fff;
+        border-radius: 50%;
+        margin-left: 20px;
+      }
+
+      /* Navigation */
+      .nav {
+        background-color: #333;
+        padding: 0;
+      }
+
+      .nav-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        padding: 0 20px;
+      }
+
+      .nav-item {
+        color: #fff;
+        text-decoration: none;
+        padding: 12px 20px;
+        transition: background-color 0.3s;
+      }
+
+      .nav-item:hover {
+        background-color: #555;
+      }
+
+      .nav-item.active {
+        background-color: #ffd700;
+        color: #000;
+      }
+
+      .main-container {
+        max-width: 1200px;
+        margin: 20px auto;
+        margin-top: 50px;
+        padding: 0 20px;
+      }
+
+      .content-spacing {
+        margin-bottom: 30px;
+      }
+
+      .form-section {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      .section-title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: #343a40;
+      }
+
+      .form-label {
+        font-weight: 500;
+        margin-bottom: 8px;
+        display: block;
+        color: #495057;
+      }
+
+      .form-control,
+      .form-select {
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        width: 100%;
+      }
+
+      .upload-area {
+        border: 2px dashed #ced4da;
+        border-radius: 4px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: border-color 0.3s;
+      }
+
+      .upload-area:hover {
+        border-color: #007bff;
+      }
+
+      .upload-icon {
+        font-size: 24px;
+        color: #6c757d;
+        margin-bottom: 10px;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background-color 0.3s;
+      }
+
+      .btn-save {
+        background-color: #28a745;
+        color: white;
+      }
+
+      .btn-save:hover {
+        background-color: #218838;
+      }
+
+      .btn-update {
+        background-color: #007bff;
+        color: white;
+      }
+
+      .btn-update:hover {
+        background-color: #0069d9;
+      }
+
+      .btn-delete {
+        background-color: #dc3545;
+        color: white;
+      }
+
+      .btn-delete:hover {
+        background-color: #c82333;
+      }
+
+      .btn-clear {
+        background-color: #6c757d;
+        color: white;
+      }
+
+      .btn-clear:hover {
+        background-color: #5a6268;
+      }
+
+      .user-avatars {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+      }
+
+      .user-avatar {
+        text-align: center;
+      }
+
+      .avatar-circle {
+        width: 60px;
+        height: 60px;
+        background-color: #e9ecef;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 8px;
+      }
+
+      .avatar-circle i {
+        font-size: 24px;
+        color: #6c757d;
+      }
+
+      .username {
+        font-size: 14px;
+        color: #495057;
+      }
+
+      .news-card {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      .news-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+      }
+
+      .news-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        color: white;
+        padding: 20px;
+      }
+
+      .news-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .news-meta {
+        font-size: 14px;
+        opacity: 0.9;
+      }
+
+      .all-news-title {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: #343a40;
+      }
+
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .news-item {
+        background-color: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .news-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .news-item-image {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .news-item-content {
+        padding: 15px;
+      }
+
+      .news-item-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #343a40;
+      }
+
+      .news-item-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        font-size: 14px;
+        color: #6c757d;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 8px;
+      }
+
+      .edit-btn,
+      .delete-btn {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+      }
+
+      .edit-btn {
+        background-color: #ffc107;
+        color: #212529;
+      }
+
+      .delete-btn {
+        background-color: #dc3545;
+        color: white;
+      }
+
+      .loading {
+        text-align: center;
+        padding: 20px;
+        color: #6c757d;
+      }
+
+      .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        position: relative;
+      }
+
+      .alert-success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+      }
+
+      .alert-error {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+      }
+
+      .btn-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: #1a1a1a;
+        color: #fff;
+        padding: 40px 0 20px 0;
+        margin-top: 50px;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 30px;
+      }
+
+      .footer-section h4 {
+        margin-bottom: 15px;
+        font-size: 16px;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section li {
+        margin-bottom: 8px;
+      }
+
+      .footer-section a {
+        color: #ccc;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .footer-section a:hover {
+        color: #fff;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid #333;
+        margin-top: 30px;
+        padding-top: 20px;
+        text-align: center;
+        color: #ccc;
+        font-size: 14px;
+      }
+
+      /* Update mode styling */
+      .update-mode {
+        border-left: 4px solid #007bff;
+      }
+
+      .d-none {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">Echo.NEWS</div>
+        <div class="search-container">
+          <input type="text" class="search-box" placeholder="Search here..." />
+          <button class="search-btn">Search</button>
+        </div>
+        <div>
+          <a href="../login.html" class="nav-item">ADD</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="nav-content">
+        <a href="../index.html" class="nav-item">Home</a>
+        <a href="latestNews.html" class="nav-item">Latest News</a>
+        <a href="newsWorld.html" class="nav-item">WORLD</a>
+        <a href="Article new.html" class="nav-item">ARTICLE</a>
+        <a href="dashboard.html" class="nav-item">DASHBOARD</a>
+        <a href="contactUs.html" class="nav-item active">CONTACT US</a>
+        <a href="../login.html" class="nav-item">LOGIN</a>
+      </div>
+    </nav>
+
+    <!-- Alert Messages -->
+    <div id="alertContainer" class="main-container"></div>
+
+    <!-- main -->
+    <div id="main">
+      <div class="main-container">
+        <div class="row content-spacing">
+          <!-- Left Column -->
+          <div class="col-md-6">
+            <!-- Add News-->
+            <div class="form-section">
+              <h2 class="section-title">Add News</h2>
+
+              <form id="addNewsForm" enctype="multipart/form-data">
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Select News category</label>
+                    <select class="form-select" name="category" required>
+                      <option selected disabled value="">
+                        Choose category...
+                      </option>
+                      <option value="politics">Politics</option>
+                      <option value="sports">Sports</option>
+                      <option value="technology">Technology</option>
+                      <option value="entertainment">Entertainment</option>
+                      <option value="world">World</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Upload image</label>
+                    <div
+                      class="upload-area"
+                      onclick="document.getElementById('addImageInput').click()"
+                    >
+                      <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                      </div>
+                      <div id="addImageText">Upload image</div>
+                      <input
+                        type="file"
+                        id="addImageInput"
+                        name="image"
+                        class="d-none"
+                        accept="image/*"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-md-6">
+                    <label class="form-label">Description....</label>
+                    <textarea
+                      class="form-control"
+                      name="description"
+                      placeholder="Description...."
+                      required
+                    ></textarea>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Date</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      name="date"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="d-flex gap-3">
+                  <button type="submit" class="btn btn-save">
+                    <span id="saveButtonText">Save</span>
+                    <i
+                      id="saveButtonSpinner"
+                      class="fas fa-spinner fa-spin d-none"
+                    ></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-clear"
+                    onclick="clearAddForm()"
+                  >
+                    Clear
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Update-->
+            <div class="form-section" id="updateSection">
+              <h2 class="section-title">Update News</h2>
+
+              <form id="updateNewsForm" enctype="multipart/form-data">
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label class="form-label">News ID</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="news_id"
+                      placeholder="Enter news id or click Edit button"
+                      required
+                      readonly
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Select News category</label>
+                    <select class="form-select" name="category">
+                      <option selected disabled value="">
+                        Choose category...
+                      </option>
+                      <option value="politics">Politics</option>
+                      <option value="sports">Sports</option>
+                      <option value="technology">Technology</option>
+                      <option value="entertainment">Entertainment</option>
+                      <option value="world">World</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                    <label class="form-label"
+                      >Upload new image (optional)</label
+                    >
+                    <div
+                      class="upload-area"
+                      onclick="document.getElementById('updateImageInput').click()"
+                    >
+                      <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                      </div>
+                      <div id="updateImageText">Upload new image</div>
+                      <input
+                        type="file"
+                        id="updateImageInput"
+                        name="image"
+                        class="d-none"
+                        accept="image/*"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-md-6">
+                    <label class="form-label">Description....</label>
+                    <textarea
+                      class="form-control"
+                      name="description"
+                      placeholder="Description...."
+                    ></textarea>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Date</label>
+                    <input type="date" class="form-control" name="date" />
+                  </div>
+                </div>
+
+                <div class="d-flex gap-3">
+                  <button type="submit" class="btn btn-update">
+                    <span id="updateButtonText">Update</span>
+                    <i
+                      id="updateButtonSpinner"
+                      class="fas fa-spinner fa-spin d-none"
+                    ></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-delete"
+                    onclick="deleteNewsFromUpdate()"
+                  >
+                    Delete
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-clear"
+                    onclick="clearUpdateForm()"
+                  >
+                    Clear
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="col-md-6">
+            <!-- User -->
+            <div class="user-avatars mb-4">
+              <div class="user-avatar">
+                <div class="avatar-circle">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="username">Admin</div>
+              </div>
+              <div class="user-avatar">
+                <div class="avatar-circle">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="username">Editor</div>
+              </div>
+              <div class="user-avatar">
+                <div class="avatar-circle">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="username">Writer</div>
+              </div>
+              <div class="user-avatar">
+                <div class="avatar-circle">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="username">Manager</div>
+              </div>
+            </div>
+
+            <!-- Latest News Card -->
+            <div class="news-card" id="latestNewsCard">
+              <img
+                src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2874&q=80"
+                alt="News Image"
+                class="news-image"
+                id="latestNewsImage"
+              />
+              <div class="news-overlay">
+                <div class="news-title" id="latestNewsTitle">
+                  Click "Save" to add your first news article
+                </div>
+                <div class="news-meta">
+                  <i class="fas fa-user"></i
+                  ><span id="latestNewsAuthor">Admin</span>
+                  <span class="ms-3">
+                    <i class="fas fa-calendar"></i
+                    ><span id="latestNewsDate">Today</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- All News Section -->
+        <div class="all-news-section content-spacing">
+          <h2 class="all-news-title">All News</h2>
+          <div class="loading" id="newsLoading">
+            <i class="fas fa-spinner fa-spin"></i> Loading news...
+          </div>
+          <div class="news-grid" id="newsGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Echo.NEWS</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Team</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>News</h4>
+          <ul>
+            <li><a href="#">Latest</a></li>
+            <li><a href="#">Breaking</a></li>
+            <li><a href="#">Popular</a></li>
+            <li><a href="#">Trending</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Categories</h4>
+          <ul>
+            <li><a href="#">World</a></li>
+            <li><a href="#">Politics</a></li>
+            <li><a href="#">Technology</a></li>
+            <li><a href="#">Sports</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Newsletter</a></li>
+            <li><a href="#">RSS Feed</a></li>
+            <li><a href="#">Mobile App</a></li>
+            <li><a href="#">Archives</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">DMCA</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Echo.NEWS. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const API_BASE_URL = "http://localhost/EchoNews/News-Site/api";
+      const UPLOADS_BASE_URL = "http://localhost/EchoNews/News-Site/uploads";
+
+      function showAlert(message, type = "success") {
+        const alertContainer = document.getElementById("alertContainer");
+        const alertDiv = document.createElement("div");
+        alertDiv.className = `alert alert-${
+          type === "success" ? "success" : "error"
+        }`;
+        alertDiv.innerHTML = `
+          ${message}
+          <button type="button" class="btn-close" onclick="this.parentElement.remove()">&times;</button>
+        `;
+        alertContainer.appendChild(alertDiv);
+
+        setTimeout(() => {
+          if (alertDiv.parentNode) {
+            alertDiv.remove();
+          }
+        }, 5000);
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      document
+        .getElementById("addImageInput")
+        .addEventListener("change", function (e) {
+          if (e.target.files.length > 0) {
+            const fileName = e.target.files[0].name;
+            document.getElementById("addImageText").textContent =
+              fileName.length > 20
+                ? fileName.substring(0, 20) + "..."
+                : fileName;
+          }
+        });
+
+      document
+        .getElementById("updateImageInput")
+        .addEventListener("change", function (e) {
+          if (e.target.files.length > 0) {
+            const fileName = e.target.files[0].name;
+            document.getElementById("updateImageText").textContent =
+              fileName.length > 20
+                ? fileName.substring(0, 20) + "..."
+                : fileName;
+          }
+        });
+
+      function clearAddForm() {
+        document.getElementById("addNewsForm").reset();
+        document.getElementById("addImageText").textContent = "Upload image";
+        const today = new Date().toISOString().split("T")[0];
+        document.querySelector('#addNewsForm input[name="date"]').value = today;
+      }
+
+      function clearUpdateForm() {
+        document.getElementById("updateNewsForm").reset();
+        document.getElementById("updateImageText").textContent =
+          "Upload new image";
+        document.querySelector('#updateNewsForm input[name="news_id"]').value =
+          "";
+
+        document
+          .getElementById("updateSection")
+          .classList.remove("update-mode");
+        document.querySelector("#updateSection .section-title").textContent =
+          "Update News";
+      }
+
+      function setButtonLoading(buttonId, spinnerId, loading) {
+        const button = document.getElementById(buttonId);
+        const spinner = document.getElementById(spinnerId);
+
+        if (loading) {
+          button.style.display = "none";
+          spinner.classList.remove("d-none");
+          button.parentElement.disabled = true;
+        } else {
+          button.style.display = "inline";
+          spinner.classList.add("d-none");
+          button.parentElement.disabled = false;
+        }
+      }
+
+      // Handle Add News Form
+      document
+        .getElementById("addNewsForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          // Show loading state
+          setButtonLoading("saveButtonText", "saveButtonSpinner", true);
+
+          const formData = new FormData(this);
+
+          try {
+            const response = await fetch(`${API_BASE_URL}/save_news.php`, {
+              method: "POST",
+              body: formData,
+            });
+
+            const result = await response.json();
+
+            if (result.status === "success") {
+              showAlert(result.message, "success");
+              clearAddForm();
+              loadAllNews();
+              loadLatestNews();
+            } else {
+              showAlert(result.message, "error");
+            }
+          } catch (error) {
+            showAlert("Error saving news: " + error.message, "error");
+            console.error("Save news error:", error);
+          } finally {
+            setButtonLoading("saveButtonText", "saveButtonSpinner", false);
+          }
+        });
+
+      // Handle Update News Form
+      document
+        .getElementById("updateNewsForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          // Show loading state
+          setButtonLoading("updateButtonText", "updateButtonSpinner", true);
+
+          const formData = new FormData(this);
+
+          try {
+            const response = await fetch(`${API_BASE_URL}/update_news.php`, {
+              method: "POST",
+              body: formData,
+            });
+
+            const result = await response.json();
+
+            if (result.status === "success") {
+              showAlert(result.message, "success");
+              clearUpdateForm();
+              loadAllNews();
+              loadLatestNews();
+            } else {
+              showAlert(result.message, "error");
+            }
+          } catch (error) {
+            showAlert("Error updating news: " + error.message, "error");
+            console.error("Update news error:", error);
+          } finally {
+            setButtonLoading("updateButtonText", "updateButtonSpinner", false);
+          }
+        });
+
+      async function editNews(newsId) {
+        try {
+          const response = await fetch(
+            `${API_BASE_URL}/get_news.php?id=${newsId}`
+          );
+          const result = await response.json();
+
+          if (result.status === "success") {
+            const news = result.data;
+
+            document.querySelector(
+              '#updateNewsForm input[name="news_id"]'
+            ).value = news.id;
+            document.querySelector(
+              '#updateNewsForm select[name="category"]'
+            ).value = news.category;
+            document.querySelector(
+              '#updateNewsForm textarea[name="description"]'
+            ).value = news.description;
+            document.querySelector('#updateNewsForm input[name="date"]').value =
+              news.date_created;
+
+            document
+              .getElementById("updateSection")
+              .classList.add("update-mode");
+            document.querySelector(
+              "#updateSection .section-title"
+            ).textContent = `Update News - ID: ${news.id}`;
+
+            document.getElementById("updateSection").scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+
+            showAlert(
+              `News loaded for editing: "${news.title.substring(0, 50)}..."`,
+              "success"
+            );
+          } else {
+            showAlert(
+              "Error loading news for edit: " + result.message,
+              "error"
+            );
+          }
+        } catch (error) {
+          showAlert("Error loading news: " + error.message, "error");
+          console.error("Edit news error:", error);
+        }
+      }
+
+      async function deleteNewsFromUpdate() {
+        const newsId = document.querySelector(
+          '#updateNewsForm input[name="news_id"]'
+        ).value;
+
+        if (!newsId) {
+          showAlert("Please enter News ID first or click Edit button", "error");
+          return;
+        }
+
+        if (!confirm("Are you sure you want to delete this news?")) {
+          return;
+        }
+
+        await deleteNews(newsId);
+        clearUpdateForm();
+      }
+
+      async function deleteNews(newsId) {
+        try {
+          const formData = new FormData();
+          formData.append("news_id", newsId);
+
+          const response = await fetch(`${API_BASE_URL}/delete_news.php`, {
+            method: "POST",
+            body: formData,
+          });
+
+          const result = await response.json();
+
+          if (result.status === "success") {
+            showAlert(result.message, "success");
+            loadAllNews();
+            loadLatestNews();
+          } else {
+            showAlert(result.message, "error");
+          }
+        } catch (error) {
+          showAlert("Error deleting news: " + error.message, "error");
+          console.error("Delete news error:", error);
+        }
+      }
+
+      // Delete news with confirmation
+      async function deleteNewsWithConfirm(newsId) {
+        if (
+          confirm(
+            "Are you sure you want to delete this news article? This action cannot be undone."
+          )
+        ) {
+          await deleteNews(newsId);
+        }
+      }
+
+      // Load all news
+      async function loadAllNews() {
+        const newsGrid = document.getElementById("newsGrid");
+        const loading = document.getElementById("newsLoading");
+
+        loading.style.display = "block";
+        newsGrid.innerHTML = "";
+
+        try {
+          const response = await fetch(`${API_BASE_URL}/get_news.php`);
+          const result = await response.json();
+
+          loading.style.display = "none";
+
+          if (result.status === "success") {
+            if (result.data.length === 0) {
+              newsGrid.innerHTML =
+                '<div style="text-align: center; color: #666; padding: 40px; grid-column: 1/-1;"><i class="fas fa-newspaper" style="font-size: 48px; margin-bottom: 20px; opacity: 0.3;"></i><br>No news articles found.<br>Add your first article using the form above.</div>';
+            } else {
+              result.data.forEach((news) => {
+                const newsItem = document.createElement("div");
+                newsItem.className = "news-item";
+
+                const imageUrl = news.image_url
+                  ? `${UPLOADS_BASE_URL}/${news.image_url}`
+                  : "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+
+                newsItem.innerHTML = `
+                  <img
+                    src="${imageUrl}"
+                    alt="News Image"
+                    class="news-item-image"
+                    onerror="this.src='https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'"
+                  />
+                  <div class="news-item-content">
+                    <h3 class="news-item-title">${news.title}</h3>
+                    <p style="font-size: 12px; color: #888; margin: 8px 0; line-height: 1.4;">${news.description.substring(
+                      0,
+                      120
+                    )}${news.description.length > 120 ? "..." : ""}</p>
+                    <div style="font-size: 11px; color: #999; margin-bottom: 10px; text-transform: uppercase; font-weight: 600;">
+                      <i class="fas fa-tag"></i> ${news.category}
+                    </div>
+                    <div class="news-item-meta">
+                      <span class="news-item-date">
+                        <i class="fas fa-calendar"></i>${news.formatted_date}
+                      </span>
+                      <div class="action-buttons">
+                        <button class="edit-btn" onclick="editNews(${
+                          news.id
+                        })" title="Edit this news">
+                          <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="delete-btn" onclick="deleteNewsWithConfirm(${
+                          news.id
+                        })" title="Delete this news">
+                          <i class="fas fa-trash"></i> Delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                `;
+                newsGrid.appendChild(newsItem);
+              });
+            }
+          } else {
+            newsGrid.innerHTML =
+              '<div style="text-align: center; color: #dc3545; padding: 40px; grid-column: 1/-1;"><i class="fas fa-exclamation-triangle" style="font-size: 48px; margin-bottom: 20px;"></i><br>Error loading news<br>Please check your connection and try again.</div>';
+          }
+        } catch (error) {
+          loading.style.display = "none";
+          newsGrid.innerHTML =
+            '<div style="text-align: center; color: #dc3545; padding: 40px; grid-column: 1/-1;"><i class="fas fa-wifi" style="font-size: 48px; margin-bottom: 20px;"></i><br>Connection Error<br>Please check your internet connection.</div>';
+          console.error("Error loading news:", error);
+        }
+      }
+
+      // Load latest news
+      async function loadLatestNews() {
+        try {
+          const response = await fetch(`${API_BASE_URL}/get_news.php`);
+          const result = await response.json();
+
+          if (result.status === "success" && result.data.length > 0) {
+            const latestNews = result.data[0];
+
+            const imageUrl = latestNews.image_url
+              ? `${UPLOADS_BASE_URL}/${latestNews.image_url}`
+              : "https://images.unsplash.com/photo-1614728263952-84ea256f9679?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2874&q=80";
+
+            document.getElementById("latestNewsImage").src = imageUrl;
+            document.getElementById("latestNewsTitle").textContent =
+              latestNews.title;
+            document.getElementById("latestNewsDate").textContent =
+              latestNews.formatted_date;
+
+            document.getElementById("latestNewsImage").onerror = function () {
+              this.src =
+                "https://images.unsplash.com/photo-1614728263952-84ea256f9679?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2874&q=80";
+            };
+          } else {
+            document.getElementById("latestNewsImage").src =
+              "https://images.unsplash.com/photo-1614728263952-84ea256f9679?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2874&q=80";
+            document.getElementById("latestNewsTitle").textContent =
+              'Click "Save" to add your first news article';
+            document.getElementById("latestNewsDate").textContent = "Today";
+          }
+        } catch (error) {
+          console.error("Error loading latest news:", error);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Set today's date as default
+        const today = new Date().toISOString().split("T")[0];
+        document.querySelector('#addNewsForm input[name="date"]').value = today;
+
+        loadAllNews();
+        loadLatestNews();
+
+        setTimeout(() => {
+          showAlert(
+            "Welcome to Echo.NEWS Admin Panel! Add, update, and manage your news articles here.",
+            "success"
+          );
+        }, 1000);
+      });
+
+      // Handle search functionality
+      document
+        .querySelector(".search-btn")
+        .addEventListener("click", function () {
+          const searchTerm = document
+            .querySelector(".search-box")
+            .value.toLowerCase();
+          if (searchTerm.trim() === "") {
+            loadAllNews();
+            return;
+          }
+
+          const newsItems = document.querySelectorAll(".news-item");
+          let foundItems = 0;
+
+          newsItems.forEach((item) => {
+            const title = item
+              .querySelector(".news-item-title")
+              .textContent.toLowerCase();
+            const description = item
+              .querySelector("p")
+              .textContent.toLowerCase();
+
+            if (
+              title.includes(searchTerm) ||
+              description.includes(searchTerm)
+            ) {
+              item.style.display = "block";
+              foundItems++;
+            } else {
+              item.style.display = "none";
+            }
+          });
+
+          if (foundItems === 0) {
+            const newsGrid = document.getElementById("newsGrid");
+            newsGrid.innerHTML = `<div style="text-align: center; color: #666; padding: 40px; grid-column: 1/-1;"><i class="fas fa-search" style="font-size: 48px; margin-bottom: 20px; opacity: 0.3;"></i><br>No results found for "${searchTerm}"<br><button class="btn btn-clear" onclick="loadAllNews(); document.querySelector('.search-box').value='';">Show All News</button></div>`;
+          }
+        });
+
+      // Handle search on Enter key
+      document
+        .querySelector(".search-box")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            document.querySelector(".search-btn").click();
+          }
+        });
+
+      // Auto-refresh news every 60 seconds
+      setInterval(function () {
+        loadAllNews();
+        loadLatestNews();
+      }, 60000);
+    </script>
+  </body>
+</html>

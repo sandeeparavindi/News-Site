@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article - Echo.NEWS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+      .header {
+        background-color: #1a1a1a;
+        padding: 10px 0;
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+      }
+
+      .logo {
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .search-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .search-box {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 3px 0 0 3px;
+        width: 300px;
+      }
+
+      .search-btn {
+        background-color: #ffd700;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 0 3px 3px 0;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .user-icon {
+        width: 30px;
+        height: 30px;
+        background-color: #fff;
+        border-radius: 50%;
+        margin-left: 20px;
+      }
+
+      /* Navigation */
+      .nav {
+        background-color: #333;
+        padding: 0;
+      }
+
+      .nav-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        padding: 0 20px;
+      }
+
+      .nav-item {
+        color: #fff;
+        text-decoration: none;
+        padding: 12px 20px;
+        transition: background-color 0.3s;
+      }
+
+      .nav-item:hover {
+        background-color: #555;
+      }
+
+      .nav-item.active {
+        background-color: #ffd700;
+        color: #000;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: #1a1a1a;
+        color: #fff;
+        padding: 40px 0 20px 0;
+        width: 100%;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 30px;
+      }
+
+      .footer-section h4 {
+        margin-bottom: 15px;
+        font-size: 16px;
+      }
+
+      .footer-section ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .footer-section li {
+        margin-bottom: 8px;
+      }
+
+      .footer-section a {
+        color: #ccc;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .footer-section a:hover {
+        color: #fff;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid #333;
+        margin-top: 30px;
+        padding-top: 20px;
+        text-align: center;
+        color: #ccc;
+        font-size: 14px;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .content-area {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* News Updates Header */
+        .news-header {
+            margin-bottom: 30px;
+        }
+
+        .news-title {
+            font-size: 28px;
+            color: #2c5aa0;
+            margin-bottom: 10px;
+        }
+
+        .news-date {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .news-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .news-card-content {
+            padding: 20px;
+        }
+
+        .news-card h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .date-comments {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .read-more {
+            background-color: #2c5aa0;
+            color: #fff;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .read-more:hover {
+            background-color: #1e3f73;
+        }
+
+        /* Bottom News Section */
+        .bottom-news {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .bottom-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .bottom-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .bottom-card-content {
+            padding: 15px;
+        }
+
+        .bottom-card h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+            line-height: 1.3;
+        }
+
+        .bottom-card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .bottom-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .author-avatar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .author-avatar img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .sidebar-widget {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .widget-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2c5aa0;
+        }
+
+        .top-story {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .top-story:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .story-number {
+            background-color: #2c5aa0;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .story-content h5 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            line-height: 1.3;
+            color: #333;
+        }
+
+        .story-meta {
+            font-size: 11px;
+            color: #666;
+        }
+
+        /* Advertisement */
+        .ad-widget {
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 8px;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .ad-widget h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .ad-widget p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Database News Cards Section */
+        .news-cards-section {
+            margin: 10px 0 40px 0;
+            padding: 20px 0 40px 0;
+            background-color: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .news-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            /* margin-top: 20px; */
+        }
+
+        .news-card-db {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .news-card-db:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card-db:hover .news-card-image {
+            transform: scale(1.05);
+        }
+
+        .news-card-content-db {
+            padding: 20px;
+        }
+
+        .news-card-category {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .news-card-category.politics {
+            background: #dc3545;
+        }
+        .news-card-category.sports {
+            background: #28a745;
+        }
+        .news-card-category.technology {
+            background: #6f42c1;
+        }
+        .news-card-category.entertainment {
+            background: #fd7e14;
+        }
+        .news-card-category.world {
+            background: #20c997;
+        }
+
+        .news-card-title {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            color: #333;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .news-card-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .news-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 12px;
+        }
+
+        .news-cards-loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .news-cards-error {
+            text-align: center;
+            padding: 40px;
+            color: #dc3545;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .section__title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .section__subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Editors Picks Section */
+        .editors-picks {
+            margin-bottom: 50px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .view-all {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .view-all:hover {
+            color: #007bff;
+        }
+
+        .picks-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .pick-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .pick-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pick-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .pick-card-content {
+            padding: 15px;
+        }
+
+        .pick-category {
+            background: #007bff;
+            color: white;
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .pick-card h4 {
+            font-size: 14px;
+            margin-bottom: 8px;
+            line-height: 1.3;
+            color: #333;
+        }
+
+        .pick-meta {
+            font-size: 11px;
+            color: #666;
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Featured Banner */
+        .featured-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .featured-content p {
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .featured-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .featured-image {
+            width: 200px;
+            height: 120px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        /* Trending News Section */
+        .trending-news {
+            margin-bottom: 40px;
+        }
+
+        .trending-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        .trending-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .main-article {
+            display: flex;
+            gap: 25px;
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .main-article img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .main-article-content {
+            flex: 1;
+        }
+
+        .main-article h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #333;
+            line-height: 1.3;
+        }
+
+        .main-article-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .main-article p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* Bottom Articles Grid */
+        .bottom-articles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .bottom-card-2 {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .bottom-card-2 img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+
+        .bottom-card-2-content {
+            padding: 15px;
+        }
+
+        .bottom-card-2 h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            line-height: 1.3;
+            color: #333;
+        }
+
+        .bottom-card-2-meta {
+            font-size: 12px;
+            color: #666;
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .top-story-large {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .top-story-large:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .top-story-large img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .top-story-large-content h5 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            line-height: 1.3;
+            color: #333;
+        }
+
+        .top-story-large-meta {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .story-category {
+            font-size: 11px;
+            color: #007bff;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .search-box {
+                width: 250px;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .main-container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bottom-news {
+                grid-template-columns: 1fr;
+            }
+
+            .news-cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .picks-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .bottom-articles {
+                grid-template-columns: 1fr;
+            }
+
+            .main-article {
+                flex-direction: column;
+            }
+
+            .main-article img {
+                width: 100%;
+            }
+
+            .featured-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .news-card-content {
+                padding: 15px;
+            }
+
+            .picks-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .news-cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">Echo.NEWS</div>
+        <div class="search-container">
+          <input type="text" class="search-box" placeholder="Search here..." />
+          <button class="search-btn">Search</button>
+        </div>
+        <div>
+          <a href="../login.html" class="nav-item">ADD</a>
+        </div>
+      </div>
+    </header>
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="nav-content">
+        <a href="../index.html" class="nav-item">Home</a>
+        <a href="latestNews.html" class="nav-item">Latest News</a>
+        <a href="newsWorld.html" class="nav-item">WORLD</a>
+        <a href="Article new.html" class="nav-item">ARTICLE</a>
+        <a href="dashboard.html" class="nav-item">DASHBOARD</a>
+        <a href="contactUs.html" class="nav-item active">CONTACT US</a>
+        <a href="../login.html" class="nav-item">LOGIN</a>
+      </div>
+    </nav>
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="content-area">
+            <!-- News Updates Header -->
+            <div class="news-header">
+                <h1 class="news-title">NEWS Updates</h1>
+                <div class="news-date">— 24 Oct 2021</div>
+            </div>
+
+             <!-- Database News Cards Section - MOVED HERE ABOVE EDITORS PICKS -->
+            <section class="news-cards-section">
+                <div class="section__head">
+                    <h3 class="section__title">Latest from our Newsroom</h3>
+                    <p class="section__subtitle">
+                        Stay updated with the most recent stories from our editorial team
+                    </p>
+                </div>
+                <div id="newsCardsContainer">
+                    <div class="news-cards-loading">
+                        <div
+                            style="
+                                display: inline-block;
+                                width: 20px;
+                                height: 20px;
+                                border: 2px solid #f3f3f3;
+                                border-top: 2px solid #007bff;
+                                border-radius: 50%;
+                                animation: spin 1s linear infinite;
+                            "
+                        ></div>
+                        <p style="margin-top: 10px">Loading latest news...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Top News Grid -->
+            <div class="news-grid">
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=400&h=200&fit=crop" alt="Peace and dignity">
+                    <div class="news-card-content">
+                        <h3>Peace, dignity and equality on a healthy planet</h3>
+                        <div class="news-meta">
+                            <div class="author-info">
+                                📅 24 Oct 2021
+                            </div>
+                        </div>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=200&fit=crop" alt="Symbol of hope">
+                    <div class="news-card-content">
+                        <h3>A symbol of hope for global unity</h3>
+                        <div class="news-meta">
+                            <div class="author-info">
+                                📅 24 Oct 2021
+                            </div>
+                        </div>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400&h=200&fit=crop" alt="Trump signs order">
+                    <div class="news-card-content">
+                        <h3>Trump signs order to cut tariffs on Japanese cars to 15%</h3>
+                        <div class="news-meta">
+                            <div class="author-info">
+                                📅 24 Oct 2021
+                            </div>
+                        </div>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom News Grid -->
+            <div class="bottom-news">
+                <div class="bottom-card">
+                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=160&fit=crop" alt="International Days">
+                    <div class="bottom-card-content">
+                        <div class="bottom-meta">
+                            <div class="author-info">
+                                📅 24 Oct 2021 | 👁️ NO COMMENTS
+                            </div>
+                        </div>
+                        <h4>Why do we mark International Days?</h4>
+                        <p>International Days and weeks are occasions to educate the public on issues of concern...</p>
+                        <div class="author-avatar">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=24&h=24&fit=crop&crop=faces" alt="Author">
+                            <span>William Ray</span>
+                        </div>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+
+                <div class="bottom-card">
+                    <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400&h=160&fit=crop" alt="How it Started">
+                    <div class="bottom-card-content">
+                        <div class="bottom-meta">
+                            <div class="author-info">
+                                📅 24 Oct 2021 | 👁️ NO COMMENTS
+                            </div>
+                        </div>
+                        <h4>How it Started?</h4>
+                        <p>In 1945, representatives of 50 countries met in San Francisco at the United Nations...</p>
+                        <div class="author-avatar">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b2c1?w=24&h=24&fit=crop&crop=faces" alt="Author">
+                            <span>William Ray</span>
+                        </div>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+
+                <div class="bottom-card">
+                    <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400&h=160&fit=crop" alt="United Nations">
+                    <div class="bottom-card-content">
+                        <div class="bottom-meta">
+                            <div class="author-info">
+                                📅 24 Oct 2021 | 👁️ NO COMMENTS
+                            </div>
+                        </div>
+                        <h4>Hymn to the United Nations</h4>
+                        <p>Get inspired by the words of W.H. Auden's Hymn to the United Nations...</p>
+                        <div class="author-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=24&h=24&fit=crop&crop=faces" alt="Author">
+                            <span>Wendy Bond</span>
+                        </div>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+            </div> 
+
+            <!-- Editors Picks Section -->
+            <section class="editors-picks">
+                <div class="section-header">
+                    <h2 class="section-title">Editors Picks</h2>
+                    <a href="#" class="view-all">View All →</a>
+                </div>
+                
+                <div class="picks-grid">
+                    <div class="pick-card">
+                        <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=300&h=150&fit=crop" alt="Sports">
+                        <div class="pick-card-content">
+                            <span class="pick-category">SPORTS</span>
+                            <h4>Everything Developers Must Know About Figma</h4>
+                            <div class="pick-meta">
+                                <span>📅 17 AUGUST, 2024</span>
+                                <span>👁️ 05 MINS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pick-card">
+                        <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=300&h=150&fit=crop" alt="Tech">
+                        <div class="pick-card-content">
+                            <span class="pick-category">TECH</span>
+                            <h4>iPhone Numbers For Web Designers</h4>
+                            <div class="pick-meta">
+                                <span>📅 17 AUGUST, 2024</span>
+                                <span>👁️ 04 MINS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pick-card">
+                        <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=300&h=150&fit=crop" alt="Food">
+                        <div class="pick-card-content">
+                            <span class="pick-category">FOOD</span>
+                            <h4>How To Create Dynamic Donut Tarmind React</h4>
+                            <div class="pick-meta">
+                                <span>📅 17 AUGUST, 2024</span>
+                                <span>👁️ 05 MINS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pick-card">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=300&h=150&fit=crop" alt="Programming">
+                        <div class="pick-card-content">
+                            <span class="pick-category">PROGRAMMING</span>
+                            <h4>An Introduction To Context Propagation In Javascript</h4>
+                            <div class="pick-meta">
+                                <span>📅 17 AUGUST, 2024</span>
+                                <span>👁️ 05 MINS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Banner -->
+                <div class="featured-banner">
+                    <div class="featured-content">
+                        <h3>Modern Technology Fast Here</h3>
+                        <p>Stay updated with the latest technology trends and innovations</p>
+                        <button class="featured-btn">Read More</button>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=200&h=120&fit=crop" alt="Technology" class="featured-image">
+                </div>
+            </section>
+
+            <!-- Trending News Section -->
+            <section class="trending-news">
+                <div class="trending-header">
+                    <h2 class="trending-title">Trending News</h2>
+                    <a href="#" class="view-all">VIEW ALL</a>
+                </div>
+
+                <!-- Main Featured Article -->
+                <article class="main-article">
+                    <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=300&h=200&fit=crop" alt="iPhone Devices">
+                    <div class="main-article-content">
+                        <h2>Iphone Devices Are Going To Incredible Now A Days</h2>
+                        <div class="main-article-meta">
+                            <span>By Admin</span>
+                            <span>📅 17 AUGUST, 2024</span>
+                            <span>👁️ 03 MINS</span>
+                        </div>
+                        <p>Shannon Ennis And Shiroa Sugar Anni Campbill Sundries: Crispy Roasted And Soft Cornea Fish Snacks Favorite Thats Never Enjoyed Favorit They Meet These Delicious Sugar</p>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </article>
+
+                <!-- Bottom Articles Grid -->
+                <div class="bottom-articles">
+                    <article class="bottom-card-2">
+                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=140&fit=crop" alt="CSS">
+                        <div class="bottom-card-2-content">
+                            <h4>One-Pan Baked Sausage And Lentils</h4>
+                            <div class="bottom-card-2-meta">
+                                <span>By Admin</span>
+                                <span>📅 17 AUGUST, 2024</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="bottom-card-2">
+                        <img src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=400&h=140&fit=crop" alt="Animation">
+                        <div class="bottom-card-2-content">
+                            <h4>How To Create Advanced Animation With CSS</h4>
+                            <div class="bottom-card-2-meta">
+                                <span>By Admin</span>
+                                <span>📅 17 AUGUST, 2024</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="bottom-card-2">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=140&fit=crop" alt="CSS">
+                        <div class="bottom-card-2-content">
+                            <h4>State Of CSS: Influence The Future of CSS</h4>
+                            <div class="bottom-card-2-meta">
+                                <span>By Admin</span>
+                                <span>📅 17 AUGUST, 2024</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Top Stories Widget -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Top Stories</h3>
+                
+                <div class="top-story">
+                    <div class="story-number">1</div>
+                    <div class="story-content">
+                        <h5>Answering Instagram Tweet Promote Your</h5>
+                        <div class="story-meta">📅 17 AUGUST, 2024</div>
+                    </div>
+                </div>
+
+                <div class="top-story">
+                    <div class="story-number">2</div>
+                    <div class="story-content">
+                        <h5>Rethinking Star Ratings For Readers</h5>
+                        <div class="story-meta">📅 17 AUGUST, 2024</div>
+                    </div>
+                </div>
+
+                <div class="top-story">
+                    <div class="story-number">3</div>
+                    <div class="story-content">
+                        <h5>Headlines In Times Of Accessibility</h5>
+                        <div class="story-meta">📅 17 AUGUST, 2024</div>
+                    </div>
+                </div>
+
+                <div class="top-story">
+                    <div class="story-number">4</div>
+                    <div class="story-content">
+                        <h5>Making S'Web ARIA A Comprehensive Guide</h5>
+                        <div class="story-meta">📅 17 AUGUST, 2024</div>
+                    </div>
+                </div>
+
+                <div class="top-story">
+                    <div class="story-number">5</div>
+                    <div class="story-content">
+                        <h5>UX Checklists For Interface Designers</h5>
+                        <div class="story-meta">📅 17 AUGUST, 2024</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Top Stories Widget with Images -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Featured Stories</h3>
+                
+                <div class="top-story-large">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=70&h=70&fit=crop&crop=faces" alt="Author">
+                    <div class="top-story-large-content">
+                        <h5>Lessons Learned As A Designer-Founder</h5>
+                        <div class="top-story-large-meta">📅 17 AUGUST, 2024</div>
+                        <div class="story-category">BUSINESS</div>
+                    </div>
+                </div>
+
+                <div class="top-story-large">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b2c1?w=70&h=70&fit=crop&crop=faces" alt="Author">
+                    <div class="top-story-large-content">
+                        <h5>A Complete Guide To Accessible Front-End UX Patterns</h5>
+                        <div class="top-story-large-meta">📅 17 AUGUST, 2024</div>
+                        <div class="story-category">DESIGN</div>
+                    </div>
+                </div>
+
+                <div class="top-story-large">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=70&h=70&fit=crop&crop=faces" alt="Author">
+                    <div class="top-story-large-content">
+                        <h5>Building A Better Developer Hub Approach</h5>
+                        <div class="top-story-large-meta">📅 17 AUGUST, 2024</div>
+                        <div class="story-category">DEVELOPMENT</div>
+                    </div>
+                </div>
+
+                <div class="top-story-large">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=70&h=70&fit=crop&crop=faces" alt="Author">
+                    <div class="top-story-large-content">
+                        <h5>Rethinking Star Ratings For Readers</h5>
+                        <div class="top-story-large-meta">📅 17 AUGUST, 2024</div>
+                        <div class="story-category">UX</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advertisement -->
+            <div class="ad-widget">
+                <h3>Offer from</h3>
+                <h2 style="font-size: 32px; margin: 10px 0;">TADDY</h2>
+                <p>Premium Advertisement Space</p>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Echo.NEWS</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Team</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>News</h4>
+          <ul>
+            <li><a href="#">Latest</a></li>
+            <li><a href="#">Breaking</a></li>
+            <li><a href="#">Popular</a></li>
+            <li><a href="#">Trending</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Categories</h4>
+          <ul>
+            <li><a href="#">World</a></li>
+            <li><a href="#">Politics</a></li>
+            <li><a href="#">Technology</a></li>
+            <li><a href="#">Sports</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Newsletter</a></li>
+            <li><a href="#">RSS Feed</a></li>
+            <li><a href="#">Mobile App</a></li>
+            <li><a href="#">Archives</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">DMCA</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Echo.NEWS. All rights reserved.</p>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const API_BASE_URL = "http://localhost/EchoNews/News-Site/api";
+      const UPLOADS_BASE_URL = "http://localhost/EchoNews/News-Site/uploads";
+
+      const style = document.createElement("style");
+      style.textContent = `
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    `;
+      document.head.appendChild(style);
+
+      async function loadNewsCards() {
+        const container = document.getElementById("newsCardsContainer");
+
+        try {
+          const response = await fetch(`${API_BASE_URL}/get_news.php`);
+          const result = await response.json();
+
+          if (result.status === "success") {
+            const newsData = result.data;
+
+            if (newsData.length === 0) {
+              container.innerHTML = `
+              <div class="news-cards-error">
+                <h3>No News Available</h3>
+                <p>No news articles have been published yet. Check back later for updates!</p>
+              </div>
+            `;
+              return;
+            }
+
+            const displayNews = newsData.slice(0, 4);
+
+            const gridHTML = `
+            <div class="news-cards-grid">
+              ${displayNews.map((news) => createNewsCard(news)).join("")}
+            </div>
+          `;
+
+            container.innerHTML = gridHTML;
+
+            updateStats(newsData.length);
+          } else {
+            throw new Error(result.message || "Failed to load news");
+          }
+        } catch (error) {
+          console.error("Error loading news cards:", error);
+          container.innerHTML = `
+          <div class="news-cards-error">
+            <h3>Error Loading News</h3>
+            <p>Unable to load news articles. Please check your connection and try again.</p>
+            <button onclick="loadNewsCards()" style="margin-top: 10px; padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Retry</button>
+          </div>
+        `;
+        }
+      }
+
+      function createNewsCard(news) {
+        const defaultImage =
+          "https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+        const imageUrl = news.image_url
+          ? `${UPLOADS_BASE_URL}/${news.image_url}`
+          : defaultImage;
+
+        const truncatedTitle =
+          news.title.length > 60
+            ? news.title.substring(0, 60) + "..."
+            : news.title;
+        const truncatedDesc =
+          news.description.length > 100
+            ? news.description.substring(0, 100) + "..."
+            : news.description;
+
+        return `
+        <div class="news-card-db" onclick="openNewsDetail(${news.id})">
+          <img src="${imageUrl}" alt="${news.title}" class="news-card-image" 
+               onerror="this.src='${defaultImage}'">
+          <div class="news-card-content-db">
+            <span class="news-card-category ${news.category.toLowerCase()}">${
+          news.category
+        }</span>
+            <h3 class="news-card-title">${truncatedTitle}</h3>
+            <p class="news-card-description">${truncatedDesc}</p>
+            <div class="news-card-meta">
+              <span>📅 ${news.formatted_date}</span>
+              <span>👁️ Read more</span>
+            </div>
+          </div>
+        </div>
+      `;
+      }
+
+      function openNewsDetail(newsId) {
+        window.location.href = `pages/news-detail.html?id=${newsId}`;
+      }
+
+      function updateStats(totalNews) {
+        const statStories = document.getElementById("statStories");
+        if (statStories) {
+          statStories.textContent = totalNews;
+        }
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        loadNewsCards();
+      });
+      setInterval(loadNewsCards, 120000);
+    </script>
+
+</body>
+</html>
