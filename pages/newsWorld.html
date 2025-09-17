@@ -12,81 +12,144 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f5f5f5;
+            line-height: 1.6;
         }
 
-        /* Header Styles */
-        .header {
-            background-color: #1a1a1a;
-            color: white;
-            padding: 15px 0;
-        }
+        /* Header */
+      .header {
+        background-color: #1a1a1a;
+        padding: 10px 0;
+      }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+      }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
+      .logo {
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+      }
 
-        .search-container {
-            display: flex;
-            align-items: center;
-        }
+      .search-container {
+        display: flex;
+        align-items: center;
+      }
 
-        .search-box {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 4px 0 0 4px;
-            width: 300px;
-        }
+      .search-box {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 3px 0 0 3px;
+        width: 300px;
+      }
 
-        .search-btn {
-            background-color: #ffd700;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-            font-weight: bold;
-        }
+      .search-btn {
+        background-color: #ffd700;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 0 3px 3px 0;
+        cursor: pointer;
+        font-weight: bold;
+      }
 
-        /* Navigation */
-        .nav {
-            background-color: #2a2a2a;
-            padding: 0;
-        }
+      .user-icon {
+        width: 30px;
+        height: 30px;
+        background-color: #fff;
+        border-radius: 50%;
+        margin-left: 20px;
+      }
 
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            padding: 0 20px;
-        }
+      /* Navigation */
+      .nav {
+        background-color: #333;
+        padding: 0;
+      }
 
-        .nav-item {
-            color: white;
-            text-decoration: none;
-            padding: 15px 20px;
-            border-right: 1px solid #444;
-            transition: background-color 0.3s;
-        }
+      .nav-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        padding: 0 20px;
+      }
 
-        .nav-item:hover {
-            background-color: #444;
-        }
+      .nav-item {
+        color: #fff;
+        text-decoration: none;
+        padding: 12px 20px;
+        transition: background-color 0.3s;
+      }
 
-        .nav-item.active {
-            background-color: #ffd700;
-            color: black;
-        }
+      .nav-item:hover {
+        background-color: #555;
+      }
+
+      .nav-item.active {
+        background-color: #ffd700;
+        color: #000;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: #1a1a1a;
+        color: #fff;
+        padding: 40px 0 20px 0;
+        width: 100%;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 30px;
+      }
+
+      .footer-section h4 {
+        margin-bottom: 15px;
+        font-size: 16px;
+      }
+
+      .footer-section ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .footer-section li {
+        margin-bottom: 8px;
+      }
+
+      .footer-section a {
+        color: #ccc;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .footer-section a:hover {
+        color: #fff;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid #333;
+        margin-top: 30px;
+        padding-top: 20px;
+        text-align: center;
+        color: #ccc;
+        font-size: 14px;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
 
         /* Main Content */
         .main-container {
@@ -98,7 +161,7 @@
             padding: 0 20px;
         }
 
-        /* Featured Article */
+        /* Featured Article - IMPROVED */
         .featured-section {
             margin-bottom: 30px;
         }
@@ -108,167 +171,318 @@
             grid-template-columns: 1fr 1fr;
             gap: 20px;
             background: white;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .featured-article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
         .featured-image {
-            background: linear-gradient(45deg, #4a9eff, #00c6ff);
-            height: 250px;
             position: relative;
+            overflow: hidden;
+            height: 300px;
+        }
+        
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .featured-article:hover .featured-image img {
+            transform: scale(1.05);
         }
 
         .featured-content {
-            padding: 20px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .featured-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #333;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #222;
+            line-height: 1.3;
         }
 
         .featured-meta {
-            color: #666;
+            color: #777;
             font-size: 14px;
             margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .featured-meta::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            background-color: #e74c3c;
+            border-radius: 50%;
         }
 
         .featured-excerpt {
             color: #555;
             line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .read-more {
+            margin-top: 20px;
+            display: inline-block;
+            color: #e74c3c;
+            font-weight: 600;
+            text-decoration: none;
+            position: relative;
+            width: fit-content;
+        }
+        
+        .read-more::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #e74c3c;
+            transition: width 0.3s ease;
+        }
+        
+        .read-more:hover::after {
+            width: 100%;
         }
 
-        /* Mini Articles */
+        /* Mini Articles - IMPROVED */
         .mini-articles {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+            gap: 20px;
             margin-bottom: 30px;
         }
 
         .mini-article {
             background: white;
-            border-radius: 6px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .mini-article:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .mini-image {
-            height: 80px;
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            height: 120px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .mini-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .mini-article:hover .mini-image img {
+            transform: scale(1.1);
         }
 
         .mini-content {
-            padding: 10px;
+            padding: 15px;
         }
 
         .mini-title {
-            font-size: 12px;
-            font-weight: bold;
-            color: #333;
-            line-height: 1.3;
+            font-size: 14px;
+            font-weight: 600;
+            color: #222;
+            line-height: 1.4;
+            margin: 0;
+        }
+        
+        .mini-meta {
+            color: #777;
+            font-size: 11px;
+            margin-top: 8px;
         }
 
-        /* Article Grid */
+        /* Article Grid - IMPROVED */
         .articles-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 25px;
             margin-bottom: 30px;
         }
 
         .article-card {
             background: white;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
         }
 
         .article-image {
-            height: 150px;
-            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .article-card:hover .article-image img {
+            transform: scale(1.1);
         }
 
         .article-content {
-            padding: 15px;
+            padding: 20px;
         }
 
         .article-title {
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #333;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #222;
+            line-height: 1.4;
         }
 
         .article-meta {
-            color: #666;
+            color: #777;
             font-size: 12px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .article-meta::before {
+            content: "";
+            display: inline-block;
+            width: 3px;
+            height: 3px;
+            background-color: #e74c3c;
+            border-radius: 50%;
         }
 
         .article-excerpt {
             color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        
+        .article-link {
+            color: #e74c3c;
             font-size: 13px;
-            line-height: 1.4;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: gap 0.2s ease;
+        }
+        
+        .article-link:hover {
+            gap: 8px;
         }
 
-        /* Sidebar */
+        /* Sidebar - IMPROVED */
         .sidebar {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
 
         .sidebar-widget {
             background: white;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
         }
 
         .widget-header {
             background: #2c3e50;
             color: white;
-            padding: 15px;
-            font-weight: bold;
+            padding: 15px 20px;
+            font-weight: 600;
+            font-size: 16px;
         }
 
         .widget-content {
-            padding: 15px;
+            padding: 20px;
         }
 
         .widget-form input {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 12px 15px;
+            margin-bottom: 12px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .widget-form input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
         }
 
         .widget-form button {
             background: #e74c3c;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             width: 100%;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .widget-form button:hover {
+            background: #c0392b;
         }
 
         .sidebar-articles {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 18px;
         }
 
         .sidebar-article {
             display: flex;
-            gap: 10px;
-            padding-bottom: 15px;
+            gap: 15px;
+            padding-bottom: 18px;
             border-bottom: 1px solid #eee;
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar-article:hover {
+            transform: translateX(5px);
         }
 
         .sidebar-article:last-child {
@@ -276,11 +490,17 @@
         }
 
         .sidebar-image {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, #fd79a8, #e84393);
-            border-radius: 4px;
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
             flex-shrink: 0;
+            overflow: hidden;
+        }
+        
+        .sidebar-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .sidebar-article-content {
@@ -288,16 +508,16 @@
         }
 
         .sidebar-article-title {
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #333;
-            line-height: 1.3;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #222;
+            line-height: 1.4;
         }
 
         .sidebar-article-meta {
-            color: #666;
-            font-size: 11px;
+            color: #777;
+            font-size: 12px;
         }
 
         /* Section Headers */
@@ -305,104 +525,98 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
             border-bottom: 2px solid #e74c3c;
         }
 
         .section-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
+            font-size: 20px;
+            font-weight: 700;
+            color: #222;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -14px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: #e74c3c;
         }
 
         .view-all {
-            color: #666;
+            color: #777;
             text-decoration: none;
             font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
         .view-all:hover {
             color: #e74c3c;
         }
 
-        /* Footer */
-        .footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 40px 0 20px;
-            margin-top: 50px;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            padding: 0 20px;
-        }
-
-        .footer-section h4 {
-            margin-bottom: 15px;
-            color: #ffd700;
-        }
-
-        .footer-section a {
-            color: #ccc;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .footer-section a:hover {
-            color: #ffd700;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #333;
-            margin-top: 30px;
-            padding-top: 20px;
-            text-align: center;
-            color: #666;
-        }
-
         .ad-banner {
-            background: linear-gradient(45deg, #ff7675, #fd79a8);
+            background: #f8f9fa;
             height: 200px;
-            border-radius: 8px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
+            color: #777;
+            font-size: 16px;
+            font-weight: 600;
+            border: 1px dashed #ddd;
+            overflow: hidden;
+        }
+        
+        .ad-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Category tags */
+        .category-tag {
+            display: inline-block;
+            background: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="header-content">
-            <div class="logo">Echo.NEWS</div>
-            <div class="search-container">
-                <input type="text" class="search-box" placeholder="Search anything...">
-                <button class="search-btn">Search</button>
-            </div>
+      <div class="header-content">
+        <div class="logo">Echo.NEWS</div>
+        <div class="search-container">
+          <input type="text" class="search-box" placeholder="Search here..." />
+          <button class="search-btn">Search</button>
         </div>
+        <div>
+          <a href="adminAirticle.html" class="nav-item">ADD</a>
+        </div>
+      </div>
     </header>
-
     <!-- Navigation -->
     <nav class="nav">
-        <div class="nav-content">
-            <a href="#" class="nav-item">Home</a>
-            <a href="#" class="nav-item">Technology</a>
-            <a href="#" class="nav-item active">Sports</a>
-            <a href="#" class="nav-item">Business</a>
-            <a href="#" class="nav-item">Health</a>
-            <a href="#" class="nav-item">Politics</a>
-            <a href="#" class="nav-item">Contact Us</a>
-        </div>
+      <div class="nav-content">
+        <a href="../index.html" class="nav-item">Home</a>
+        <a href="latestNews.html" class="nav-item">Latest News</a>
+        <a href="newsWorld.html" class="nav-item">WORLD</a>
+        <a href="Article new.html" class="nav-item">ARTICLE</a>
+        <a href="dashboard.html" class="nav-item">DASHBOARD</a>
+        <a href="contactUs.html" class="nav-item active">CONTACT US</a>
+        <a href="../login.html" class="nav-item">LOGIN</a>
+      </div>
     </nav>
 
     <!-- Main Container -->
@@ -412,15 +626,20 @@
             <!-- Featured Article -->
             <section class="featured-section">
                 <article class="featured-article">
-                    <div class="featured-image"></div>
+                    <div class="featured-image">
+                         <img src="../assets/w1.jpg" alt="How To protect Your App With Threat Model">
+                    </div>
+                    
                     <div class="featured-content">
-                        <h2 class="featured-title">How to Reduce Your Daily Water Usage Beyond the Standard</h2>
+                        <span class="category-tag">TECHNOLOGY</span>
+                        <h2 class="featured-title">How To Protect Your App With Threat Model Based On JSONDiff</h2>
                         <div class="featured-meta">
-                            By Admin • March 15, 2023 • No Comments
+                            By Admin • August 15, 2025 • No Comments
                         </div>
                         <p class="featured-excerpt">
-                            In today's world, water conservation has become more important than ever. With growing populations and climate change affecting water supplies globally, each of us must do our part to reduce consumption. This comprehensive guide will show you practical ways to minimize your daily water usage without compromising your lifestyle.
+                            Browned Butter And Brown Suger Caramelly Oodness Crispy Edgesthick And Soft Centers And Melty Little Puddles Of Chocolate Y First Favorite. Browned Butter Brown Suger Caramelly Oodness.
                         </p>
+                        <a href="#" class="read-more">Read More</a>
                     </div>
                 </article>
             </section>
@@ -428,27 +647,39 @@
             <!-- Mini Articles -->
             <section class="mini-articles">
                 <article class="mini-article">
-                    <div class="mini-image"></div>
+                    <div class="mini-image">
+                        <img src="../assets/w2.jpg" alt="Using Instagram To Promote Your">
+                    </div>
                     <div class="mini-content">
-                        <h3 class="mini-title">Investment Strategies for 2024</h3>
+                        <h3 class="mini-title">Using Instagram To Promote Your Business</h3>
+                        <div class="mini-meta">March 15, 2025</div>
                     </div>
                 </article>
                 <article class="mini-article">
-                    <div class="mini-image"></div>
+                    <div class="mini-image">
+                        <img src="../assets/w3.jpg" alt="Everything Developers Must Know About">
+                    </div>
                     <div class="mini-content">
-                        <h3 class="mini-title">New Technology Trends</h3>
+                        <h3 class="mini-title">Everything Developers Must Know About API Security</h3>
+                        <div class="mini-meta">March 14, 2025</div>
                     </div>
                 </article>
                 <article class="mini-article">
-                    <div class="mini-image"></div>
+                    <div class="mini-image">
+                        <img src="../assets/w4.jpg" alt="Implementing Okta Authentication">
+                    </div>
                     <div class="mini-content">
-                        <h3 class="mini-title">Health Tips for Winter</h3>
+                        <h3 class="mini-title">Implementing Okta Authentication In Modern Apps</h3>
+                        <div class="mini-meta">March 13, 2025</div>
                     </div>
                 </article>
                 <article class="mini-article">
-                    <div class="mini-image"></div>
+                    <div class="mini-image">
+                        <img src="../assets/w5.jpg" alt="New Technology Trends">
+                    </div>
                     <div class="mini-content">
-                        <h3 class="mini-title">Sports Update Today</h3>
+                        <h3 class="mini-title">New Technology Trends Shaping 2025</h3>
+                        <div class="mini-meta">March 12, 2025</div>
                     </div>
                 </article>
             </section>
@@ -461,51 +692,75 @@
                 </div>
                 <div class="articles-grid">
                     <article class="article-card">
-                        <div class="article-image"></div>
+                        <div class="article-image">
+                            <img src="../assets/w6.jpg" alt="How To Design An Effective User Onboarding Flow">
+                        </div>
                         <div class="article-content">
-                            <h3 class="article-title">Tips on Minimalist Design Inspiration</h3>
-                            <div class="article-meta">By Admin • March 12, 2023</div>
-                            <p class="article-excerpt">Discover the principles of minimalist design and how to apply them effectively in your projects.</p>
+                            <span class="category-tag">DESIGN</span>
+                            <h3 class="article-title">How To Design An Effective User Onboarding Flow</h3>
+                            <div class="article-meta">By Admin • March 12, 2025</div>
+                            <p class="article-excerpt">An effective onboarding flow turns first-time users into loyal ones. By keeping the process simple and engaging...</p>
+                            <a href="#" class="article-link">Read More →</a>
                         </div>
                     </article>
                     <article class="article-card">
-                        <div class="article-image"></div>
+                        <div class="article-image">
+                            <img src="../assets/w7.jpg" alt="A Comprehensive Checklist For Design Workshops">
+                        </div>
                         <div class="article-content">
-                            <h3 class="article-title">Best Travel Destinations 2024</h3>
-                            <div class="article-meta">By Travel Expert • March 10, 2023</div>
-                            <p class="article-excerpt">Explore the most exciting travel destinations for the upcoming year with our comprehensive guide.</p>
+                            <span class="category-tag">WORKSHOP</span>
+                            <h3 class="article-title">A Comprehensive Checklist For Running Design Workshops</h3>
+                            <div class="article-meta">By Travel Expert • March 10, 2025</div>
+                            <p class="article-excerpt">A design workshop needs clear goals, right people, planning, tools, teamwork, focus, creativity, summaries...</p>
+                            <a href="#" class="article-link">Read More →</a>
                         </div>
                     </article>
                     <article class="article-card">
-                        <div class="article-image"></div>
+                        <div class="article-image">
+                            <img src="../assets/w8.jpg" alt="How to Create Dynamic Donut Charts">
+                        </div>
                         <div class="article-content">
-                            <h3 class="article-title">Sustainable Living Practices</h3>
-                            <div class="article-meta">By Eco Writer • March 8, 2023</div>
-                            <p class="article-excerpt">Learn practical ways to live more sustainably and reduce your environmental impact.</p>
+                            <span class="category-tag">DEVELOPMENT</span>
+                            <h3 class="article-title">How to Create Dynamic Donut Charts With TailwindCSS And React</h3>
+                            <div class="article-meta">By Eco Writer • March 8, 2025</div>
+                            <p class="article-excerpt">Create dynamic, responsive donut charts in React with TailwindCSS, featuring smooth animations, data updates...</p>
+                            <a href="#" class="article-link">Read More →</a>
                         </div>
                     </article>
                     <article class="article-card">
-                        <div class="article-image"></div>
+                        <div class="article-image">
+                            <img src="../assets/w9.jpg" alt="Overcoming The Challenges Of Content Creation">
+                        </div>
                         <div class="article-content">
-                            <h3 class="article-title">Digital Marketing Trends</h3>
-                            <div class="article-meta">By Marketing Pro • March 6, 2023</div>
-                            <p class="article-excerpt">Stay ahead of the curve with the latest digital marketing strategies and trends.</p>
+                            <span class="category-tag">CONTENT</span>
+                            <h3 class="article-title">Overcoming The Challenges Of Content Creation For Informational Websites</h3>
+                            <div class="article-meta">By Marketing Pro • March 6, 2025</div>
+                            <p class="article-excerpt">Discover strategies to overcome challenges in content creation for informational websites, ensuring quality...</p>
+                            <a href="#" class="article-link">Read More →</a>
                         </div>
                     </article>
                     <article class="article-card">
-                        <div class="article-image"></div>
+                        <div class="article-image">
+                            <img src="../assets/w10.jpg" alt="Internationalization In Next.Js 13">
+                        </div>
                         <div class="article-content">
-                            <h3 class="article-title">Healthy Cooking Made Simple</h3>
-                            <div class="article-meta">By Chef Master • March 4, 2023</div>
-                            <p class="article-excerpt">Transform your cooking with these simple techniques for healthier, more nutritious meals.</p>
+                            <span class="category-tag">WEB DEV</span>
+                            <h3 class="article-title">Internationalization In Next.Js 13 With React Server Components</h3>
+                            <div class="article-meta">By Chef Master • March 4, 2025</div>
+                            <p class="article-excerpt">Learn internationalization in Next.js 13 with React Server Components to build multilingual, scalable applications...</p>
+                            <a href="#" class="article-link">Read More →</a>
                         </div>
                     </article>
                     <article class="article-card">
-                        <div class="article-image"></div>
+                        <div class="article-image">
+                            <img src="../assets/w11.jpg" alt="Why You Should Consider Graphs For Your Next GraphQL Project">
+                        </div>
                         <div class="article-content">
-                            <h3 class="article-title">Remote Work Best Practices</h3>
-                            <div class="article-meta">By Work Expert • March 2, 2023</div>
-                            <p class="article-excerpt">Maximize your productivity and maintain work-life balance while working remotely.</p>
+                            <span class="category-tag">GRAPHQL</span>
+                            <h3 class="article-title">Why You Should Consider Graphs For Your Next GraphQL Project</h3>
+                            <div class="article-meta">By Work Expert • March 2, 2025</div>
+                            <p class="article-excerpt">Discover how graphs enhance GraphQL projects with better data visualization, performance, and intuitive handling...</p>
+                            <a href="#" class="article-link">Read More →</a>
                         </div>
                     </article>
                 </div>
@@ -514,40 +769,44 @@
             <!-- Weekly Best Stories Section 2 -->
             <section>
                 <div class="section-header">
-                    <h2 class="section-title">Weekly Best Stories</h2>
+                    <h2 class="section-title">Trending This Week</h2>
                     <a href="#" class="view-all">View All →</a>
                 </div>
                 <div class="articles-grid">
                     <article class="article-card">
-                        <div class="article-image"></div>
+                        <div class="article-image">
+                            <img src="../assets/w12.jpg" alt="How To Protect Your App With A Model Based On JSONDiff">
+                        </div>
                         <div class="article-content">
-                            <h3 class="article-title">The Future of AI Technology</h3>
-                            <div class="article-meta">By Tech Analyst • February 28, 2023</div>
-                            <p class="article-excerpt">Exploring the potential impact of artificial intelligence on various industries.</p>
+                            <span class="category-tag">SECURITY</span>
+                            <h3 class="article-title">How To Protect Your App With A Model Based On JSONDiff</h3>
+                            <div class="article-meta">By Tech Analyst • February 28, 2025</div>
+                            <p class="article-excerpt">Learn how to secure your application using a JSONDiff-based model, detecting changes, preventing vulnerabilities...</p>
+                            <a href="#" class="article-link">Read More →</a>
                         </div>
                     </article>
                     <article class="article-card">
-                        <div class="article-image"></div>
+                        <div class="article-image">
+                            <img src="../assets/w13.jpg" alt="Beyond Algorithms: Skills Of Designers That AI Can't Replicate">
+                        </div>
                         <div class="article-content">
-                            <h3 class="article-title">Financial Planning for Millennials</h3>
-                            <div class="article-meta">By Financial Advisor • February 26, 2023</div>
-                            <p class="article-excerpt">Essential financial planning strategies tailored specifically for the millennial generation.</p>
+                            <span class="category-tag">DESIGN</span>
+                            <h3 class="article-title">Beyond Algorithms: Skills Of Designers That AI Can't Replicate</h3>
+                            <div class="article-meta">By Financial Advisor • February 26, 2025</div>
+                            <p class="article-excerpt">Explore unique designer skills beyond algorithms, highlighting creativity, empathy, and human-centered problem-solving...</p>
+                            <a href="#" class="article-link">Read More →</a>
                         </div>
                     </article>
                     <article class="article-card">
-                        <div class="article-image"></div>
-                        <div class="article-content">
-                            <h3 class="article-title">Climate Change Solutions</h3>
-                            <div class="article-meta">By Environment Reporter • February 24, 2023</div>
-                            <p class="article-excerpt">Innovative approaches to addressing climate change challenges worldwide.</p>
+                        <div class="article-image">
+                            <img src="../assets/w14.jpg" alt="A Comprehensive Checklist For Design Workshops">
                         </div>
-                    </article>
-                    <article class="article-card">
-                        <div class="article-image"></div>
                         <div class="article-content">
-                            <h3 class="article-title">Gaming Industry Updates</h3>
-                            <div class="article-meta">By Gaming Journalist • February 22, 2023</div>
-                            <p class="article-excerpt">Latest news and developments in the rapidly evolving gaming industry.</p>
+                            <span class="category-tag">WORKSHOP</span>
+                            <h3 class="article-title">A Comprehensive Checklist For Design Workshops</h3>
+                            <div class="article-meta">By Environment Reporter • February 24, 2025</div>
+                            <p class="article-excerpt">Follow this comprehensive checklist for design workshops to ensure effective planning, collaboration, creativity...</p>
+                            <a href="#" class="article-link">Read More →</a>
                         </div>
                     </article>
                 </div>
@@ -560,6 +819,7 @@
             <div class="sidebar-widget">
                 <div class="widget-header">Daily Newsletter</div>
                 <div class="widget-content">
+                    <p style="margin-bottom: 15px; color: #555; font-size: 14px;">Get the latest news delivered to your inbox</p>
                     <div class="widget-form">
                         <input type="text" placeholder="Your Name">
                         <input type="email" placeholder="Your Email">
@@ -569,7 +829,9 @@
             </div>
 
             <!-- Advertisement -->
-            <div class="ad-banner">Advertisement</div>
+            <div class="ad-banner">
+                <img src="../assets/w16.jpg" alt="Advertisement">
+            </div>
 
             <!-- Recent Articles Widget -->
             <div class="sidebar-widget">
@@ -577,31 +839,39 @@
                 <div class="widget-content">
                     <div class="sidebar-articles">
                         <article class="sidebar-article">
-                            <div class="sidebar-image"></div>
-                            <div class="sidebar-article-content">
-                                <h4 class="sidebar-article-title">Tips for Better Sleep Quality</h4>
-                                <div class="sidebar-article-meta">March 14, 2023</div>
+                            <div class="sidebar-image">
+                                <img src="../assets/w17.jpg" alt="Cryptocurrency Market Analysis">
                             </div>
-                        </article>
-                        <article class="sidebar-article">
-                            <div class="sidebar-image"></div>
                             <div class="sidebar-article-content">
                                 <h4 class="sidebar-article-title">Cryptocurrency Market Analysis</h4>
-                                <div class="sidebar-article-meta">March 13, 2023</div>
+                                <div class="sidebar-article-meta">March 14, 2025</div>
                             </div>
                         </article>
                         <article class="sidebar-article">
-                            <div class="sidebar-image"></div>
+                            <div class="sidebar-image">
+                                <img src="../assets/w18.jpg" alt="Social Media Marketing tips">
+                            </div>
                             <div class="sidebar-article-content">
-                                <h4 class="sidebar-article-title">Social Media Marketing Tips</h4>
-                                <div class="sidebar-article-meta">March 12, 2023</div>
+                                <h4 class="sidebar-article-title">Social Media Marketing Tips For 2025</h4>
+                                <div class="sidebar-article-meta">March 13, 2025</div>
                             </div>
                         </article>
                         <article class="sidebar-article">
-                            <div class="sidebar-image"></div>
+                            <div class="sidebar-image">
+                                <img src="../assets/w19.jpg" alt="Future Tech">
+                            </div>
                             <div class="sidebar-article-content">
-                                <h4 class="sidebar-article-title">Healthy Recipe Ideas</h4>
-                                <div class="sidebar-article-meta">March 11, 2023</div>
+                                <h4 class="sidebar-article-title">Future Tech: What's Coming Next?</h4>
+                                <div class="sidebar-article-meta">March 12, 2025</div>
+                            </div>
+                        </article>
+                        <article class="sidebar-article">
+                            <div class="sidebar-image">
+                                <img src="../assets/w20.jpg" alt="Financial Planning for Millennials">
+                            </div>
+                            <div class="sidebar-article-content">
+                                <h4 class="sidebar-article-title">Financial Planning for Millennials</h4>
+                                <div class="sidebar-article-meta">March 11, 2025</div>
                             </div>
                         </article>
                     </div>
@@ -609,12 +879,15 @@
             </div>
 
             <!-- Advertisement -->
-            <div class="ad-banner">Advertisement</div>
+            <div class="ad-banner">
+                <img src="../assets/w21.jpg" alt="Advertisement">
+            </div>
 
             <!-- Newsletter Widget 2 -->
             <div class="sidebar-widget">
-                <div class="widget-header">Weekly Newsletter</div>
+                <div class="widget-header">Weekly Digest</div>
                 <div class="widget-content">
+                    <p style="margin-bottom: 15px; color: #555; font-size: 14px;">Weekly roundup of the most important stories</p>
                     <div class="widget-form">
                         <input type="text" placeholder="Enter Name">
                         <input type="email" placeholder="Enter Email">
@@ -629,17 +902,21 @@
                 <div class="widget-content">
                     <div class="sidebar-articles">
                         <article class="sidebar-article">
-                            <div class="sidebar-image"></div>
+                            <div class="sidebar-image">
+                                <img src="../assets/w23.jpg" alt="Best Fitness Apps for 2025">
+                            </div>
                             <div class="sidebar-article-content">
-                                <h4 class="sidebar-article-title">Best Fitness Apps for 2024</h4>
-                                <div class="sidebar-article-meta">March 10, 2023</div>
+                                <h4 class="sidebar-article-title">Best Fitness Apps for 2025</h4>
+                                <div class="sidebar-article-meta">March 10, 2025</div>
                             </div>
                         </article>
                         <article class="sidebar-article">
-                            <div class="sidebar-image"></div>
+                            <div class="sidebar-image">
+                                <img src="../assets/w24.jpg" alt="Investment Portfolio Tips">
+                            </div>
                             <div class="sidebar-article-content">
-                                <h4 class="sidebar-article-title">Investment Portfolio Tips</h4>
-                                <div class="sidebar-article-meta">March 9, 2023</div>
+                                <h4 class="sidebar-article-title">Smart Investment Portfolio Tips</h4>
+                                <div class="sidebar-article-meta">March 9, 2025</div>
                             </div>
                         </article>
                     </div>
@@ -648,38 +925,58 @@
         </aside>
     </div>
 
-    <!-- Footer -->
+   <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Echo.NEWS</h4>
-                <p>Your trusted source for daily news and insights. Stay informed with our comprehensive coverage.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="#">About Us</a>
-                <a href="#">Contact</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-            </div>
-            <div class="footer-section">
-                <h4>Categories</h4>
-                <a href="#">Technology</a>
-                <a href="#">Sports</a>
-                <a href="#">Business</a>
-                <a href="#">Health</a>
-            </div>
-            <div class="footer-section">
-                <h4>Follow Us</h4>
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
-                <a href="#">Instagram</a>
-                <a href="#">YouTube</a>
-            </div>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Echo.NEWS</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Team</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 Echo.NEWS. All rights reserved.</p>
+        <div class="footer-section">
+          <h4>News</h4>
+          <ul>
+            <li><a href="#">Latest</a></li>
+            <li><a href="#">Breaking</a></li>
+            <li><a href="#">Popular</a></li>
+            <li><a href="#">Trending</a></li>
+          </ul>
         </div>
+        <div class="footer-section">
+          <h4>Categories</h4>
+          <ul>
+            <li><a href="#">World</a></li>
+            <li><a href="#">Politics</a></li>
+            <li><a href="#">Technology</a></li>
+            <li><a href="#">Sports</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Newsletter</a></li>
+            <li><a href="#">RSS Feed</a></li>
+            <li><a href="#">Mobile App</a></li>
+            <li><a href="#">Archives</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">DMCA</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Echo.NEWS. All rights reserved.</p>
+      </div>
     </footer>
 </body>
 </html>
