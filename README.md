@@ -28,6 +28,10 @@ It allows users to view news and provides an admin panel to manage news articles
 5. Open your browser and navigate to:
    ```
    http://localhost/EchoNews/News-Site/pages/index.html
+6. Use admin username and password for create, update and Delete News.
+    ```
+    usenname : admin
+    password : 12345
 
 ## 👥 User Roles
 
