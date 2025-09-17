@@ -27,7 +27,7 @@ It allows users to view news and provides an admin panel to manage news articles
 4. Start your local server (e.g., Apache and MySQL in XAMPP).
 5. Open your browser and navigate to:
    ```
-   http://localhost/News/News-Site/pages/index.html
+   http://localhost/EchoNews/News-Site/pages/index.html
 
 ## 👥 User Roles
 
