@@ -145,7 +145,7 @@
           <button class="search-btn">Search</button>
         </div>
         <div>
-          <a href="pages/adminAirticle.html" class="nav-item">ADD</a>
+          <a href="login.html" class="nav-item">ADD</a>
         </div>
       </div>
     </header>
@@ -167,11 +167,11 @@
     <!-- Login Form -->
     <div class="login-box">
       <h2>Sign in</h2>
-      <form>
-        <input type="email" placeholder="Email">
-        <input type="password" placeholder="Password">
-        <button type="submit">Sign In</button>
-      </form>
+      <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Sign In</button>
+    </form>
 
       <div class="divider">
         <span>OR</span>
@@ -246,5 +246,22 @@
             <p>&copy; 2024 Echo.NEWS. All rights reserved.</p>
         </div>
     </footer>
+    <script>
+    const defaultUsername = "admin";
+    const defaultPassword = "12345";
+
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username === defaultUsername && password === defaultPassword) {
+        window.location.href = "pages/adminAirticle.html";
+      } else {
+        alert("❌ Incorrect username or password!");
+      }
+    });
+  </script>
 </body>
 </html>
